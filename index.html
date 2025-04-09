@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>সিলেটি-বাংলা বুদ্ধিমান ট্রান্সলেটর</title>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <div class="logo-container">
+                <i class="fas fa-language logo-icon"></i>
+                <h1 class="logo-text">সিলেটি <span class="logo-highlight">↔</span> বাংলা</h1>
+            </div>
+            <p class="tagline">বুদ্ধিমান অনুবাদ সেবা</p>
+        </header>
+
+        <main class="main-content">
+            <div class="translation-card">
+                <div class="language-tabs">
+                    <button class="tab active" id="sylhetiToBanglaTab" aria-selected="true">
+                        <span class="tab-icon"><i class="fas fa-arrow-right"></i></span>
+                        <span class="tab-text">সিলেটি থেকে বাংলা</span>
+                    </button>
+                    <button class="tab" id="banglaToSylhetiTab" aria-selected="false">
+                        <span class="tab-icon"><i class="fas fa-arrow-left"></i></span>
+                        <span class="tab-text">বাংলা থেকে সিলেটি</span>
+                    </button>
+                </div>
+
+                <div class="input-container">
+                    <div class="input-header">
+                        <span id="inputLabel">সিলেটি টেক্সট লিখুন</span>
+                        <button class="clear-btn" id="clearInput" aria-label="ইনপুট পরিষ্কার করুন">
+                            <i class="fas fa-times"></i> পরিষ্কার
+                        </button>
+                    </div>
+                    <textarea id="inputText" placeholder="এখানে আপনার টেক্সট লিখুন..." aria-label="ইনপুট টেক্সট"></textarea>
+                    <div class="input-footer">
+                        <span class="char-count"><span id="charCount">0</span>/500</span>
+                        <button class="translate-btn" id="translateBtn" aria-label="অনুবাদ করুন">
+                            <i class="fas fa-exchange-alt"></i> অনুবাদ করুন
+                        </button>
+                    </div>
+                </div>
+
+                <div class="output-container">
+                    <div class="output-header">
+                        <span id="outputLabel">বাংলা অনুবাদ</span>
+                        <button class="copy-btn" id="copyOutput" aria-label="অনুবাদ কপি করুন">
+                            <i class="far fa-copy"></i> কপি
+                        </button>
+                    </div>
+                    <div class="output-text" id="outputText" aria-live="polite">
+                        <p class="placeholder-text">অনুবাদ এখানে প্রদর্শিত হবে</p>
+                    </div>
+                    <div class="feedback-section">
+                        <div class="feedback-prompt">
+                            <span>এই অনুবাদ কি সঠিক?</span>
+                        </div>
+                        <div class="feedback-buttons">
+                            <button class="feedback-btn yes-btn" id="feedbackYes" aria-label="হ্যাঁ, অনুবাদ সঠিক">
+                                <i class="fas fa-thumbs-up"></i> হ্যাঁ
+                            </button>
+                            <button class="feedback-btn no-btn" id="feedbackNo" aria-label="না, অনুবাদ সঠিক নয়">
+                                <i class="fas fa-thumbs-down"></i> না
+                            </button>
+                        </div>
+                        <div class="correction-box" id="correctionBox">
+                            <textarea placeholder="সঠিক অনুবাদ লিখুন..." aria-label="সংশোধন টেক্সট"></textarea>
+                            <div class="correction-actions">
+                                <button class="cancel-btn" id="cancelCorrection">বাতিল</button>
+                                <button class="submit-btn" id="submitCorrection">জমা দিন</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="add-translation-card">
+                <h3 class="add-title"><i class="fas fa-plus-circle"></i> নতুন অনুবাদ যোগ করুন</h3>
+                <div class="add-form">
+                    <div class="input-group">
+                        <label for="newSylheti">সিলেটি</label>
+                        <input type="text" id="newSylheti" placeholder="সিলেটি শব্দ/বাক্য" aria-label="সিলেটি টেক্সট">
+                    </div>
+                    <div class="input-group">
+                        <label for="newBangla">বাংলা</label>
+                        <input type="text" id="newBangla" placeholder="বাংলা শব্দ/বাক্য" aria-label="বাংলা টেক্সট">
+                    </div>
+                    <button class="add-btn" id="addNewBtn" aria-label="নতুন অনুবাদ সংরক্ষণ করুন">
+                        <i class="fas fa-save"></i> সংরক্ষণ করুন
+                    </button>
+                </div>
+            </div>
+        </main>
+
+        <footer class="app-footer">
+            <p>এই ট্রান্সলেটরটি সময়ের সাথে সাথে আপনার সহায়তায় আরও স্মার্ট হবে</p>
+            <div class="social-links">
+                <a href="#" class="social-link" aria-label="ফেসবুক"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="social-link" aria-label="টুইটার"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-link" aria-label="গিটহাব"><i class="fab fa-github"></i></a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Notification Toast -->
+    <div class="notification" id="notification" aria-live="assertive"></div>
+
+    <!-- Error Modal -->
+    <div class="modal" id="errorModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title"><i class="fas fa-exclamation-triangle"></i> ত্রুটি</h3>
+                <button class="close-btn" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body" id="modalMessage"></div>
+            <div class="modal-footer">
+                <button class="modal-ok-btn" id="modalOk">ঠিক আছে</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
