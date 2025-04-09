@@ -1,24 +1,27 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyBaTKFY31DzZJj--qKHHnpQ_K5m5kxka-s",
-  authDomain: "sylhetitranslator.firebaseapp.com",
-  projectId: "sylhetitranslator",
-  storageBucket: "sylhetitranslator.firebasestorage.app",
-  messagingSenderId: "947926921985",
-  appId: "1:947926921985:web:745b3366f007cddfe6a100",
-  measurementId: "G-T2S2MZJJEQ"
-};
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyBaTKFY31DzZJj--qKHHnpQ_K5m5kxka-s",
+    authDomain: "sylhetitranslator.firebaseapp.com",
+    databaseURL: "https://sylhetitranslator-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "sylhetitranslator",
+    storageBucket: "sylhetitranslator.firebasestorage.app",
+    messagingSenderId: "947926921985",
+    appId: "1:947926921985:web:745b3366f007cddfe6a100",
+    measurementId: "G-T2S2MZJJEQ"
+  };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
 
 // DOM elements
 const sylhetiToBanglaTab = document.getElementById('sylhetiToBanglaTab');
