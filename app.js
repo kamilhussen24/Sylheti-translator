@@ -2,7 +2,7 @@
 const firebaseConfig = {
     apiKey: "AIzaSyBaTKFY31DzZJj--qKHHnpQ_K5m5kxka-s",
     authDomain: "sylhetitranslator.firebaseapp.com",
-    projectId: "YOUR_PROJECT_ID",
+    projectId: "sylhetitranslator",
     storageBucket: "sylhetitranslator",
     messagingSenderId: "947926921985",
     appId: "1:947926921985:web:745b3366f007cddfe6a100",
