@@ -98,7 +98,7 @@ function setupEventListeners() {
     }
 }
 
-// Switch translation direction
+// Updated switchDirection function
 function switchDirection(direction) {
     try {
         currentDirection = direction;
@@ -120,8 +120,14 @@ function switchDirection(direction) {
             outputLabel.textContent = 'সিলেটি অনুবাদ';
         }
         
-        // Swap input and output if there's existing text
-        if (outputText.textContent.trim() && !outputText.querySelector('.placeholder-text')) {
+        // Only clear if the current output is "No translation found" message
+        if (outputText.querySelector('.no-translation')) {
+            outputText.innerHTML = '<p class="placeholder-text">অনুবাদ এখানে প্রদর্শিত হবে</p>';
+            lastTranslationId = null;
+        }
+        
+        // Swap input and output if there's existing translated text
+        if (outputText.textContent.trim() && !outputText.querySelector('.placeholder-text') && !outputText.querySelector('.no-translation')) {
             const temp = inputText.value;
             inputText.value = outputText.textContent;
             outputText.innerHTML = `<p>${temp}</p>`;
