@@ -390,14 +390,47 @@ function addNewTranslation() {
     try {
         const sylhetiText = newSylhetiInput.value.trim();
         const banglaText = newBanglaInput.value.trim();
-        
+
         if (!sylhetiText || !banglaText) {
             showNotification('উভয় ফিল্ড পূরণ করুন', 'error');
             return;
         }
 
+        // নতুন যুক্ত করা অংশ: শব্দ গুনে যাচাই
+        // ইংরেজি সংখ্যা → বাংলা সংখ্যা কনভার্ট ফাংশন
+function convertToBanglaNumber(number) {
+    const engToBan = {
+        '0': '০',
+        '1': '১',
+        '2': '২',
+        '3': '৩',
+        '4': '৪',
+        '5': '৫',
+        '6': '৬',
+        '7': '৭',
+        '8': '৮',
+        '9': '৯'
+    };
+    return number.toString().split('').map(digit => engToBan[digit] || digit).join('');
+}
+
+// শব্দ গননা ও তুলনা
+const sylhetiWordCount = sylhetiText.split(/\s+/).length;
+const banglaWordCount = banglaText.split(/\s+/).length;
+
+const sylhetiCountBN = convertToBanglaNumber(sylhetiWordCount);
+const banglaCountBN = convertToBanglaNumber(banglaWordCount);
+
+if (sylhetiWordCount !== banglaWordCount) {
+    showNotification(
+        `সিলেটি ( ${sylhetiCountBN} টা শব্দ ) বাংলা ( ${banglaCountBN} টা শব্দ )<br>এর মধ্যে শব্দ সংখ্যা সমান নয় ! শব্দ সমান করুন ।`,
+        'error'
+    );
+    return;
+}
+
         const newTranslationRef = database.ref('translations').push();
-        
+
         newTranslationRef.set({
             sylheti: sylhetiText,
             bangla: banglaText,
@@ -418,10 +451,13 @@ function addNewTranslation() {
     }
 }
 
+
 // Show notification
 function showNotification(message, type = 'success') {
     try {
-        notification.textContent = message;
+        const notification = document.getElementById('notification'); // ID দিয়ে ধরলাম
+
+        notification.innerHTML = message; // HTML সাপোর্টের জন্য
         notification.classList.add('show');
         
         // Set color based on type
@@ -432,11 +468,16 @@ function showNotification(message, type = 'success') {
         } else {
             notification.style.backgroundColor = 'var(--primary-color)';
         }
-        
-        // Hide after 3 seconds
-        setTimeout(() => {
+
+        // Hide after 5 seconds or on touch/click
+        const hideNotification = () => {
             notification.classList.remove('show');
-        }, 3000);
+            notification.removeEventListener('click', hideNotification);
+        };
+
+        setTimeout(hideNotification, 5000);
+        notification.addEventListener('click', hideNotification);
+
     } catch (error) {
         console.error('Notification error:', error);
     }
