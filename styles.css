@@ -833,6 +833,61 @@ textarea:focus {
     color: #4361ee; /* Kamil নামটা নীল করতে */
 }
 
+/* Maintenance mode notification */
+.kamil-notification-container {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--card-color);
+  color: var(--dark-color);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 16px rgba(248, 113, 113, 0.2); /* red glow from --error-color */
+  padding: 10px;
+  border-radius: 12px;
+  width: 300px;
+  max-width: 90%;
+  z-index: 9999;
+  display: none;
+  animation: kamil-fade-in 0.3s ease-in-out;
+}
+
+.kamil-notification-container p {
+  margin: 0 0 10px 0;
+  text-align: center;
+  font-size: 15px;
+}
+
+.kamil-notification-button {
+  display: block;
+  margin: 0 auto;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.kamil-notification-button:hover {
+  background-color: var(--primary-light);
+}
+
+@keyframes kamil-fade-in {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+
+
 /* Desktop Styles */
         @media (min-width: 768px) {
             .main-header {
