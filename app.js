@@ -205,8 +205,8 @@ function translateText() {
             return;
         }
 
-        if (text.length > 20) {
-            showErrorModal('টেক্সট খুব দীর্ঘ। সর্বোচ্চ ২০ অক্ষর অনুবাদ করা যাবে।');
+        if (text.length > 30) {
+            showErrorModal('টেক্সট খুব দীর্ঘ। সর্বোচ্চ ৩০ অক্ষর অনুবাদ করা যাবে।');
             return;
         }
 
