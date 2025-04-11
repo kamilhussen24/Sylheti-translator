@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>আমাদের সম্পর্কে | সিলেটি ট্রান্সলেটর</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali&display=swap" rel="stylesheet">
+    
+    
+<link rel="stylesheet" href="styles.css">
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyBaTKFY31DzZJj--qKHHnpQ_K5m5kxka-s",
+    authDomain: "sylhetitranslator.firebaseapp.com",
+    databaseURL: "https://sylhetitranslator-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "sylhetitranslator",
+    storageBucket: "sylhetitranslator.firebasestorage.app",
+    messagingSenderId: "947926921985",
+    appId: "1:947926921985:web:745b3366f007cddfe6a100",
+    measurementId: "G-T2S2MZJJEQ"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+  
+  // Toggle menu functionality
+        const menuBtn = document.querySelector('.menu-btn');
+        const dropdownContainer = document.querySelector('.dropdown-container');
+
+        menuBtn.addEventListener('click', () => {
+            menuBtn.classList.toggle('active');
+            dropdownContainer.classList.toggle('active');
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.header-container')) {
+                menuBtn.classList.remove('active');
+                dropdownContainer.classList.remove('active');
+            }
+        });
+  
+</script>
+
+<script>
+  function shareContent() {
+    if (navigator.share) {
+      navigator.share({
+        title: 'সিলেটি থেকে শুদ্ধ বাংলা ট্রান্সলেটর',
+        text: 'দেখে আসুন নতুন সিলেটি ট্রান্সলেটর:',
+        url: 'https://kamilhussen24.github.io/sylheti-translator/'
+      })
+      .then(() => console.log('Shared successfully'))
+      .catch((error) => console.log('Sharing failed', error));
+    } else {
+      alert('Sharing not supported on this browser/device');
+    }
+  }
+</script>
+</head>
+<body>
+	<div class="header-container">
+        <div class="main-header">
+            <!-- Menu Button -->
+            <button class="menu-btn">
+                <span class="menu-line"></span>
+                <span class="menu-line"></span>
+                <span class="menu-line"></span>
+            </button>
+
+            <!-- Logo -->
+            <a href="#" class="logo">Sylheti<span class="logo-highlight">Words</span></a>
+
+            <!-- Notification -->
+            <button class="share-btn" onclick="shareContent()">
+    <i class="fas fa-share-alt share-icon"></i>
+    <span class="notification-badge">3</span>
+</button>
+
+            <!-- Dropdown Container -->
+            <div class="dropdown-container">
+                <div class="dropdown-menu">
+                    <a href="index.html" class="menu-item">
+    <i class="fas fa-home menu-icon"></i>
+    Home
+</a>
+
+<a href="#" class="menu-item">
+    <i class="fas fa-info-circle menu-icon"></i>
+    About
+</a>
+<a href="https://kamilhussen24.github.io/" class="menu-item">
+    <i class="fas fa-phone-alt menu-icon"></i>
+    Contact
+</a>
+<a href="how-to-add.html" class="menu-item">
+    <i class="fas fa-plus-circle menu-icon"></i>
+    How to add
+</a>
+             </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="app-container">
+        
+        <main class="main-content">
+            
+            <div class="translation-card">
+                <div class="language-tabs">
+                	
+                	<div class="input-container">
+                    <div class="input-header">
+                        
+                    </div>
+                    
+                    <div style="font-family: Arial, sans-serif; font-size: 16px; color: #333; line-height: 1.8;">
+
+  <h2 style="font-size: 24px; margin-bottom: 20px;">আমাদের সম্পর্কে</h2>
+
+  <p>
+    এই ওয়েবসাইটটি একটি বিশেষ উদ্যোগ, যেখানে সিলেটি আঞ্চলিক ভাষা ও শুদ্ধ বাংলা ভাষার মধ্যে একটি সেতুবন্ধন তৈরি করা হচ্ছে।
+  </p>
+
+  <p>
+    এটি কোনো সাধারণ অনুবাদক নয় । বরং এটি এমন একটি প্ল্যাটফর্ম, যেখানে ব্যবহারকারীরা নিজেরাই সিলেটি ভাষা ও শুদ্ধ বাংলায় শব্দ বা বাক্য জোড়া জমা দেন। 
+    এইভাবে আমরা একটি কমিউনিটি ভিত্তিক ডাটাবেস তৈরি করছি, যা সময়ের সাথে সাথে আরও সমৃদ্ধ ও কার্যকর হবে।<br><br>
+  </p>
+
+  <p>
+   তবে এখানে সবার সহযোগিতা প্রয়োজন কাজের পদ্ধতিটি খুবই সহজ আপনি দুটি বাক্সে দুইটি ভাষার শব্দ বা বাক্য প্রদান করবেন, যেমন:
+  </p>
+
+  <p>
+    <strong>সিলেটি:</strong> কিতা খবর<br>
+    <strong>শুদ্ধ বাংলা:</strong> কি খবর
+  </p>
+
+  <p>
+    <br>আপনার জমা দেওয়া ডাটা অন্য ব্যবহারকারীরাও দেখতে পারবেন এবং ধীরে ধীরে এটি একটি বড় অনুবাদ সংগ্রহে রূপ নেবে, যা শিক্ষার্থী, গবেষক এবং ভাষাপ্রেমীদের জন্য অমূল্য একটি সম্পদ হয়ে উঠবে। তাই বড় ডাটাবেজ তৈরি করতে আপনাদের সবার সহযোগিতা প্রয়োজন ।<br><br>
+  </p>
+
+  <p>
+   এটি কোনো অটোমেশন ডাটাবেজ বা মেশিন লার্নিং নয়, কারণ API কিংবা অন্যান্য প্রযুক্তি ব্যয়বহুল এবং এতে অনেক সীমাবদ্ধতা থাকে। আঞ্চলিক ভাষাগুলো শেখানো সময়সাপেক্ষ । <br>আমাদের লক্ষ্য হলো মানুষের শব্দ বাক্য ডাটার দেয়ার মাধ্যমে একটি স্মার্ট এবং কার্যকর ভাষা অনুবাদ সহায়ক তৈরি করা, যা কোনও প্রি-প্রোগ্রামড মেশিন ট্রান্সলেটর নয়, বরং জীবন্ত ভাষার অভিজ্ঞতার উপর ভিত্তি করে গড়ে উঠবে।<br><br>
+  </p>
+
+  <p>
+    আপনি যদি একজন সিলেটি ভাষাভাষী, ভাষা শিখতে আগ্রহী, অথবা হারিয়ে যাওয়া ভাষাগুলোকে ধরে রাখতে চান তাহলে এই উদ্যোগে আপনার অবদান রাখতে আমন্ত্রণ জানাই।
+  </p>
+
+  <p style="margin-top: 30px;">
+   </p> আসুন, আমরা সবাই মিলে আঞ্চলিক ভাষা ও শুদ্ধ ভাষার মধ্যে একটি মেলবন্ধন তৈরি করি। </p> কিন্তু দিন শেষে আমরা সবাই বাঙালি সবারই ভাষা বাংলা ।
+  </p>
+
+</div>
+    </div>
+        </main>
+
+        <footer class="app-footer">
+            <p>ভুল হলে নতুন শব্দ বাক্য যুক্ত করুন এই ট্রান্সলেটরটি সময়ের সাথে সাথে আপনার সহায়তায় আরও উন্নত হবে ।</p>
+            <div class="social-links">
+                <a href="https://facebook.com/kamilhussen24" class="social-link" aria-label="ফেসবুক"><i class="fab fa-facebook"></i></a>
+                <a href="https://x.com/kamilhussen24?s=09" class="social-link" aria-label="টুইটার"><i class="fab fa-twitter"></i></a>
+                <a href="https://t.me/kamildex" class="social-link" aria-label="টেলিগ্রাম"><i class="fab fa-telegram"></i></a>
+            </div>
+            <footer class="custom-footer">
+    <p class="custom-footer-credit">Designed by<strong><a href="https://kamilhussen24.github.io/" target="_blank">Kamil Hussen</a></strong>&copy;2025</p>
+</footer>
+    </div>
+</body>
+</html>

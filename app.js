@@ -109,15 +109,15 @@ function switchDirection(direction) {
             sylhetiToBanglaTab.setAttribute('aria-selected', 'true');
             banglaToSylhetiTab.classList.remove('active');
             banglaToSylhetiTab.setAttribute('aria-selected', 'false');
-            inputLabel.textContent = 'সিলেটি টেক্সট লিখুন';
-            outputLabel.textContent = 'বাংলা অনুবাদ';
+            inputLabel.textContent = 'আঞ্চলিক সিলেটি লিখুন';
+            outputLabel.textContent = 'শুদ্ধ বাংলা অনুবাদ';
         } else {
             banglaToSylhetiTab.classList.add('active');
             banglaToSylhetiTab.setAttribute('aria-selected', 'true');
             sylhetiToBanglaTab.classList.remove('active');
             sylhetiToBanglaTab.setAttribute('aria-selected', 'false');
-            inputLabel.textContent = 'বাংলা টেক্সট লিখুন';
-            outputLabel.textContent = 'সিলেটি অনুবাদ';
+            inputLabel.textContent = 'শুদ্ধ বাংলা লিখুন';
+            outputLabel.textContent = 'আঞ্চলিক সিলেটি অনুবাদ';
         }
         
         // Only clear if the current output is "No translation found" message

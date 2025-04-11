@@ -3,12 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>সিলেটি-বাংলা বুদ্ধিমান ট্রান্সলেটর</title>
-    <link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>সিলেটি থেকে শুদ্ধ বাংলা ট্রান্সলেটর</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
+   <!-- Primary Meta Tags -->
+<title>সিলেটি থেকে শুদ্ধ বাংলা ট্রান্সলেটর</title>
+<meta name="title" content="সিলেটি থেকে শুদ্ধ বাংলা ট্রান্সলেটর" />
+<meta name="description" content="আঞ্চলিক সিলেটি থেকে শুদ্ধ বাংলা ট্রান্সলেটর , সিলেটি ওয়ার্ড বুক।" />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://kamilhussen24.github.io/sylheti-translator/" />
+<meta property="og:title" content="সিলেটি থেকে শুদ্ধ বাংলা ট্রান্সলেটর" />
+<meta property="og:description" content="আঞ্চলিক সিলেটি থেকে শুদ্ধ বাংলা ট্রান্সলেটর , সিলেটি ওয়ার্ড বুক।" />
+<meta property="og:image" content="https://metatags.io/images/meta-tags.png" />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content="https://kamilhussen24.github.io/sylheti-translator/" />
+<meta property="twitter:title" content="সিলেটি থেকে শুদ্ধ বাংলা ট্রান্সলেটর" />
+<meta property="twitter:description" content="আঞ্চলিক সিলেটি থেকে শুদ্ধ বাংলা ট্রান্সলেটর , সিলেটি ওয়ার্ড বুক।" />
+<meta property="twitter:image" content="https://metatags.io/images/meta-tags.png" />
+<!-- ফেভিকন - ICO ফরম্যাট (সবচেয়ে কম্প্যাটিবল) -->
+<link rel="icon" href="/image/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="/image/favicon.ico" type="image/x-icon">
+
+<!-- PNG ফরম্যাট (আধুনিক ব্রাউজার) -->
+<link rel="icon" href="/image/favicon.png" type="image/png">
+ <link rel="apple-touch-icon" sizes="180x180" href="/image/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/image/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/image/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali&display=swap" rel="stylesheet">
+    
+    
+<link rel="stylesheet" href="styles.css">
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
 <script type="module">
@@ -34,18 +65,96 @@
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
+  
+  // Toggle menu functionality
+        const menuBtn = document.querySelector('.menu-btn');
+        const dropdownContainer = document.querySelector('.dropdown-container');
+
+        menuBtn.addEventListener('click', () => {
+            menuBtn.classList.toggle('active');
+            dropdownContainer.classList.toggle('active');
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.header-container')) {
+                menuBtn.classList.remove('active');
+                dropdownContainer.classList.remove('active');
+            }
+        });
+  
 </script>
 
+<script>
+  function shareContent() {
+    if (navigator.share) {
+      navigator.share({
+        title: 'সিলেটি থেকে শুদ্ধ বাংলা ট্রান্সলেটর',
+        text: 'দেখে আসুন নতুন সিলেটি ট্রান্সলেটর:',
+        url: 'https://kamilhussen24.github.io/sylheti-translator/'
+      })
+      .then(() => console.log('Shared successfully'))
+      .catch((error) => console.log('Sharing failed', error));
+    } else {
+      alert('Sharing not supported on this browser/device');
+    }
+  }
+</script>
 </head>
 <body>
+	<div class="header-container">
+        <div class="main-header">
+            <!-- Menu Button -->
+            <button class="menu-btn">
+                <span class="menu-line"></span>
+                <span class="menu-line"></span>
+                <span class="menu-line"></span>
+            </button>
+
+            <!-- Logo -->
+            <a href="#" class="logo">Sylheti<span class="logo-highlight">Words</span></a>
+
+            <!-- Notification -->
+            <button class="share-btn" onclick="shareContent()">
+    <i class="fas fa-share-alt share-icon"></i>
+    <span class="notification-badge">3</span>
+</button>
+
+            <!-- Dropdown Container -->
+            <div class="dropdown-container">
+                <div class="dropdown-menu">
+                    <a href="index.html" class="menu-item">
+    <i class="fas fa-home menu-icon"></i>
+    Home
+</a>
+
+<a href="about.html" class="menu-item">
+    <i class="fas fa-info-circle menu-icon"></i>
+    About
+</a>
+<a href="https://kamilhussen24.github.io/" class="menu-item">
+    <i class="fas fa-phone-alt menu-icon"></i>
+    Contact
+</a>
+<a href="how-to-add.html" class="menu-item">
+    <i class="fas fa-plus-circle menu-icon"></i>
+    How to add
+</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="app-container">
         <header class="app-header">
             <div class="logo-container">
-                <i class="fas fa-language logo-icon"></i>
-                <h1 class="logo-text">সিলেটি <span class="logo-highlight">↔</span> বাংলা</h1>
+            	<img src="image/sylheti.png" alt="sylhet-Logo" class="logo-sylt">
+                </div>
+                <div class="logo-container">
+                <h1 class="logo-text">সিলেটি <span class="logo-highlight">টু</span> শুদ্ধ বাংলা</h1>
             </div>
-            <p class="tagline">বুদ্ধিমান অনুবাদ সেবা</p>
+            <p class="tagline"> সিলেটি শব্দ ও বাক্য অনুবাদ সেবা</p>
         </header>
 
         <main class="main-content">
@@ -53,17 +162,17 @@
                 <div class="language-tabs">
                     <button class="tab active" id="sylhetiToBanglaTab" aria-selected="true">
                         <span class="tab-icon"><i class="fas fa-arrow-right"></i></span>
-                        <span class="tab-text">সিলেটি থেকে বাংলা</span>
+                        <span class="tab-text">সিলেটি থেকে শুদ্ধ বাংলা</span>
                     </button>
                     <button class="tab" id="banglaToSylhetiTab" aria-selected="false">
                         <span class="tab-icon"><i class="fas fa-arrow-left"></i></span>
-                        <span class="tab-text">বাংলা থেকে সিলেটি</span>
+                        <span class="tab-text">শুদ্ধ বাংলা থেকে সিলেটি</span>
                     </button>
                 </div>
 
                 <div class="input-container">
                     <div class="input-header">
-                        <span id="inputLabel">সিলেটি টেক্সট লিখুন</span>
+                        <span id="inputLabel">আঞ্চলিক সিলেটি লিখুন</span>
                         <button class="clear-btn" id="clearInput" aria-label="ইনপুট পরিষ্কার করুন">
                             <i class="fas fa-times"></i> পরিষ্কার
                         </button>
@@ -79,7 +188,7 @@
 
                 <div class="output-container">
                     <div class="output-header">
-                        <span id="outputLabel">বাংলা অনুবাদ</span>
+                        <span id="outputLabel">শুদ্ধ বাংলা অনুবাদ</span>
                         <button class="copy-btn" id="copyOutput" aria-label="অনুবাদ কপি করুন">
                             <i class="far fa-copy"></i> কপি
                         </button>
@@ -114,28 +223,33 @@
                 <h3 class="add-title"><i class="fas fa-plus-circle"></i> নতুন অনুবাদ যোগ করুন</h3>
                 <div class="add-form">
                     <div class="input-group">
-                        <label for="newSylheti">সিলেটি</label>
+                        <label for="newSylheti">আঞ্চলিক সিলেটি</label>
                         <input type="text" id="newSylheti" placeholder="সিলেটি শব্দ/বাক্য" aria-label="সিলেটি টেক্সট">
                     </div>
                     <div class="input-group">
-                        <label for="newBangla">বাংলা</label>
+                        <label for="newBangla">শুদ্ধ বাংলা</label>
                         <input type="text" id="newBangla" placeholder="বাংলা শব্দ/বাক্য" aria-label="বাংলা টেক্সট">
                     </div>
+                    <p style="text-align: center;">উপরে ছোট্ট ছোট্ট শব্দ লিখে জমা দিন</p>
                     <button class="add-btn" id="addNewBtn" aria-label="নতুন অনুবাদ সংরক্ষণ করুন">
                         <i class="fas fa-save"></i> সংরক্ষণ করুন
                     </button>
+                    
                 </div>
             </div>
+            
         </main>
 
         <footer class="app-footer">
-            <p>এই ট্রান্সলেটরটি সময়ের সাথে সাথে আপনার সহায়তায় আরও স্মার্ট হবে</p>
+            <p>ভুল হলে নতুন শব্দ বাক্য যুক্ত করুন এই ট্রান্সলেটরটি সময়ের সাথে সাথে আপনার সহায়তায় আরও উন্নত হবে ।</p>
             <div class="social-links">
-                <a href="#" class="social-link" aria-label="ফেসবুক"><i class="fab fa-facebook"></i></a>
-                <a href="#" class="social-link" aria-label="টুইটার"><i class="fab fa-twitter"></i></a>
-                <a href="#" class="social-link" aria-label="গিটহাব"><i class="fab fa-github"></i></a>
+                <a href="https://facebook.com/kamilhussen24" class="social-link" aria-label="ফেসবুক"><i class="fab fa-facebook"></i></a>
+                <a href="https://x.com/kamilhussen24?s=09" class="social-link" aria-label="টুইটার"><i class="fab fa-twitter"></i></a>
+                <a href="https://t.me/kamildex" class="social-link" aria-label="টেলিগ্রাম"><i class="fab fa-telegram"></i></a>
             </div>
-        </footer>
+            <footer class="custom-footer">
+    <p class="custom-footer-credit">Designed by<strong><a href="https://kamilhussen24.github.io/" target="_blank">Kamil Hussen</a></strong>&copy;2025</p>
+</footer>
     </div>
 
     <!-- Notification Toast -->
