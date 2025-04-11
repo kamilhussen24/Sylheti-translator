@@ -148,7 +148,7 @@ function updateCharacterCount() {
         const count = inputText.value.length;
         charCount.textContent = count;
         
-        if (count > 400) {
+        if (count > 30) {
             charCount.style.color = 'var(--error-color)';
         } else {
             charCount.style.color = 'var(--medium-color)';
