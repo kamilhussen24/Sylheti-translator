@@ -291,15 +291,25 @@
   const kamilPopup = document.getElementById('kamil-notification');
   const kamilBtn = document.getElementById('kamil-ok-btn');
 
-  // Show popup if not already dismissed
-  if (!localStorage.getItem('kamilNotificationDismissed')) {
-    kamilPopup.style.display = 'block';
-  }
+  // আপনার নোটিফিকেশনের ইউনিক ভার্সন
+  const notificationVersion = 'v1'; // এখানে আপনি প্রতিবার নতুন ভার্সন দিবেন যেমন v5, v6...
 
-  kamilBtn.addEventListener('click', () => {
-    localStorage.setItem('kamilNotificationDismissed', 'true');
-    kamilPopup.style.display = 'none';
-  });
+  const seenVersion = localStorage.getItem('kamilNotificationDismissed');
+
+  if (seenVersion !== notificationVersion) {
+    kamilPopup.style.display = 'block';
+
+    // ৫ সেকেন্ড পর অটো হাইড করবে
+    setTimeout(() => {
+      kamilPopup.style.display = 'none';
+    }, 4000);
+
+    // ইউজার যদি ওকে ক্লিক করে, তখন সেই ভার্সন সেভ করবে
+    kamilBtn.addEventListener('click', () => {
+      localStorage.setItem('kamilNotificationDismissed', notificationVersion);
+      kamilPopup.style.display = 'none';
+    });
+  }
 </script>
 
     <script src="app.js"></script>
