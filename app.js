@@ -224,26 +224,28 @@ translationsRef.once('value').then((snapshot) => {
 
     // Sort and group by word and highest vote
     Object.entries(translations).forEach(([id, trans]) => {
-        const sourceField = currentDirection === 'sylhetiToBangla' ? 'sylheti' : 'bangla';
-        const targetField = currentDirection === 'sylhetiToBangla' ? 'bangla' : 'sylheti';
+    const sourceField = currentDirection === 'sylhetiToBangla' ? 'sylheti' : 'bangla';
+    const targetField = currentDirection === 'sylhetiToBangla' ? 'bangla' : 'sylheti';
 
-        const sourceWords = trans[sourceField].toLowerCase().split(/\s+/);
-        const targetWords = trans[targetField].split(/\s+/);
+    const sourceWords = trans[sourceField].toLowerCase().split(/\s+/);
+    const targetWords = trans[targetField].split(/\s+/);
 
-        sourceWords.forEach((sourceWord, index) => {
-            if (targetWords[index]) {
-                const existing = wordTranslations.get(sourceWord);
+    sourceWords.forEach((sourceWord, index) => {
+        const cleanSourceWord = sourceWord.trim().toLowerCase().replace(/[^\p{L}\p{N}]/gu, '');
 
-                // যদি আগে থেকেই থাকে, তাহলে ভোট দেখে চেক করো
-                if (!existing || (trans.votes || 0) > (existing.votes || 0)) {
-                    wordTranslations.set(sourceWord, {
-                        translation: targetWords[index],
-                        id: id,
-                        votes: trans.votes || 0
-                    });
-                }
+        if (targetWords[index]) {
+            const existing = wordTranslations.get(cleanSourceWord);
+
+            if (!existing || (trans.votes || 0) > (existing.votes || 0)) {
+                wordTranslations.set(cleanSourceWord, {
+                    translation: targetWords[index],
+                    id: id,
+                    votes: trans.votes || 0
+                });
             }
-        });
+        }
+    });
+});
     });
 
     const lines = text.split('\n');
