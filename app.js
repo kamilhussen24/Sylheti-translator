@@ -246,7 +246,6 @@ translationsRef.once('value').then((snapshot) => {
         }
     });
 });
-    });
 
     const lines = text.split('\n');
     let outputLines = [];
