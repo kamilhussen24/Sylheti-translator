@@ -32,7 +32,7 @@ You can try the live version of the site here:
 
 ## Screenshot
 
-![Website Screenshot]([https://raw.githubusercontent.com/kamilhussen/sylheti-bangla/main/images/screenshot.png)]
+![Website Screenshot](https://raw.githubusercontent.com/kamilhussen/sylheti-bangla/main/images/screenshot.png)
 
 *Sample interface showing Sylheti and Standard Bangla input fields*
 
