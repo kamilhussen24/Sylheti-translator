@@ -280,6 +280,28 @@
         </div>
     </div>
 
+
+	<!-- Maintenance Notification Box -->
+<div id="kamil-notification" class="kamil-notification-container">
+  <p> সাইটটি সচল রয়েছে, তবে কিছু উন্নয়ন কাজ এখনো চলছে ।</p>
+  <button id="kamil-ok-btn" class="kamil-notification-button">ওকে</button>
+</div>
+
+<script>
+  const kamilPopup = document.getElementById('kamil-notification');
+  const kamilBtn = document.getElementById('kamil-ok-btn');
+
+  // Show popup if not already dismissed
+  if (!localStorage.getItem('kamilNotificationDismissed')) {
+    kamilPopup.style.display = 'block';
+  }
+
+  kamilBtn.addEventListener('click', () => {
+    localStorage.setItem('kamilNotificationDismissed', 'true');
+    kamilPopup.style.display = 'none';
+  });
+</script>
+
     <script src="app.js"></script>
 </body>
 </html>
