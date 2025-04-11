@@ -352,9 +352,9 @@ function submitCorrection() {
         }
 
         const feedbackRef = database.ref('userFeedback').push();
-        const translationRef = database.ref(`translations/${lastTranslationId}`);
-        
-        // Save feedback
+        const correctionsRef = database.ref('translations');
+
+        // Save feedback regardless
         feedbackRef.set({
             translationId: lastTranslationId,
             feedback: "incorrect",
@@ -365,29 +365,65 @@ function submitCorrection() {
             console.error('Correction save error:', error);
         });
 
-        // Update translation if multiple users suggest the same correction
-        translationRef.once('value').then((snapshot) => {
-            const translation = snapshot.val();
-            const updates = {};
-            
-            if (currentDirection === 'sylhetiToBangla') {
-                updates[`translations/${lastTranslationId}/bangla`] = correctionText;
-            } else {
-                updates[`translations/${lastTranslationId}/sylheti`] = correctionText;
-            }
-            
-            database.ref().update(updates).then(() => {
-                showNotification('আপনার সংশোধন জমা হয়েছে। ধন্যবাদ!');
-                correctionBox.style.display = 'none';
-                correctionBox.querySelector('textarea').value = '';
-                
-                // Update the displayed translation
-                outputText.innerHTML = `<p>${correctionText}</p>`;
-            }).catch(error => {
-                showErrorModal('অনুবাদ আপডেট করতে সমস্যা হয়েছে।');
-                console.error('Translation update error:', error);
+        // Check if similar correction already exists
+        correctionsRef.once('value').then(snapshot => {
+            const translations = snapshot.val();
+            let matchFound = false;
+            let matchedId = null;
+
+            Object.entries(translations).forEach(([id, trans]) => {
+                const original = trans[currentDirection === 'sylhetiToBangla' ? 'sylheti' : 'bangla'];
+                const suggestion = trans[currentDirection === 'sylhetiToBangla' ? 'bangla' : 'sylheti'];
+
+                if (
+                    original?.toLowerCase() === translations[lastTranslationId]?.[currentDirection === 'sylhetiToBangla' ? 'sylheti' : 'bangla']?.toLowerCase() &&
+                    suggestion?.trim().toLowerCase() === correctionText.toLowerCase()
+                ) {
+                    matchFound = true;
+                    matchedId = id;
+                }
             });
+
+            if (matchFound && matchedId) {
+                // If already exists, increase vote
+                database.ref(`translations/${matchedId}`).transaction((trans) => {
+                    if (trans) {
+                        trans.votes = (trans.votes || 0) + 1;
+                    }
+                    return trans;
+                }).then(() => {
+                    showNotification('এই সংশোধন পূর্বে ছিল, ভোট যুক্ত হয়েছে!');
+                    correctionBox.style.display = 'none';
+                    correctionBox.querySelector('textarea').value = '';
+                    outputText.innerHTML = `<p>${correctionText}</p>`;
+                });
+            } else {
+                // If not exists, create a new translation entry
+                const newRef = correctionsRef.push();
+                const newData = {};
+
+                if (currentDirection === 'sylhetiToBangla') {
+                    newData.sylheti = translations[lastTranslationId].sylheti;
+                    newData.bangla = correctionText;
+                } else {
+                    newData.bangla = translations[lastTranslationId].bangla;
+                    newData.sylheti = correctionText;
+                }
+
+                newData.votes = 1;
+
+                newRef.set(newData).then(() => {
+                    showNotification('আপনার সংশোধন যুক্ত হয়েছে!');
+                    correctionBox.style.display = 'none';
+                    correctionBox.querySelector('textarea').value = '';
+                    outputText.innerHTML = `<p>${correctionText}</p>`;
+                });
+            }
+        }).catch(error => {
+            showErrorModal('অনুবাদ আপডেট করতে সমস্যা হয়েছে।');
+            console.error('Translation update error:', error);
         });
+
     } catch (error) {
         showErrorModal('সংশোধন জমা দিতে সমস্যা হয়েছে।');
         console.error('Submit correction error:', error);
