@@ -445,7 +445,7 @@ function addNewTranslation() {
                     translationsRef.child(id).update({ votes: updatedVotes })
                         .then(() => {
                             showNotification(
-                                `এই অনুবাদটি আগে থেকেই রয়েছে<br>বাংলা: ${translation.bangla}<br>আপনার ভোট যোগ হয়েছে! মোট ভোট: ${convertToBanglaNumber(updatedVotes)}`,
+                                `এটি আগে থেকেই যুক্ত রয়েছে<br>বাংলা: ${translation.bangla}<br>আপনার ভোট যোগ হয়েছে! মোট ভোট: ${convertToBanglaNumber(updatedVotes)}`,
                                 'success'
                             );
                             newSylhetiInput.value = '';
