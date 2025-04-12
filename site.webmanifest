@@ -13,7 +13,7 @@
       "type": "image/png"
     }
   ],
-  "start_url": "https://kamilhussen24.github.io/sylheti-translator/?source=pwa",
+  "start_url": "./?source=pwa",
   "display": "standalone",
   "theme_color": "#4361ee",
   "background_color": "#ffffff",
@@ -24,5 +24,6 @@
   "categories": [
     "education",
     "tools"
-  ]
+  ],
+  "prefer_related_applications": false
 }
