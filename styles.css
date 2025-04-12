@@ -36,20 +36,17 @@ body {
 }
 
 /* Header Container */
-        .header-container {
-            width: 100%;
-            background-color: var(--bg-color);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            position: relative;
-            z-index: 1000;
-            border-radius: 16px;
-            padding: 0 var(--side-gap-mobile);
-            margin: 0 auto; /* কেন্দ্র করে রাখে */
+.header-container {
     width: 100%;
+    background-color: var(--bg-color);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 1000;
+    border-radius: 16px;
+    padding: 0 var(--side-gap-mobile);
+    margin: 20px auto 0 auto; /* উপরের দিকে 20px ফাঁকা রাখা হলো */
     max-width: 760px; /* ডেক্সটপে ছোট রাখলাম */
-    
-    
-        }
+}
 
         /* Main Header */
         .main-header {
