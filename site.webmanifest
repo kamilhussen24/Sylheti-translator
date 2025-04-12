@@ -1,6 +1,6 @@
 {
   "name": "Sylheti Translator",
-  "short_name": "Sylheti Translator",
+  "short_name": "Sylheti",
   "icons": [
     {
       "src": "image/android-chrome-192x192.png",
@@ -13,24 +13,16 @@
       "type": "image/png"
     }
   ],
-  "start_url": "https://kamilhussen24.github.io/sylheti-translator/",
-  "display": "minimal-ui",
+  "start_url": "https://kamilhussen24.github.io/sylheti-translator/?source=pwa",
+  "display": "standalone",
   "theme_color": "#4361ee",
   "background_color": "#ffffff",
-  "orientation": "any",
+  "orientation": "portrait",
   "lang": "bn",
-  "scope": "https://kamilhussen24.github.io/sylheti-translator/",
+  "scope": "./",
   "dir": "auto",
   "categories": [
-    "books",
-    "education"
-  ],
-  "share_target": {
-    "method": "GET",
-    "action": "https://kamilhussen24.github.io/sylheti-translator/",
-    "params": {
-      "title": "Sylheti Translator",
-      "url": "https://kamilhussen24.github.io/sylheti-translator/"
-    }
-  }
+    "education",
+    "tools"
+  ]
 }
