@@ -44,7 +44,7 @@ body {
     z-index: 1000;
     border-radius: 16px;
     padding: 0 var(--side-gap-mobile);
-    margin: 20px auto 0 auto; /* উপরের দিকে 20px ফাঁকা রাখা হলো */
+    margin: 8px auto 0 auto; /* উপরের দিকে 20px ফাঁকা রাখা হলো */
     max-width: 760px; /* ডেক্সটপে ছোট রাখলাম */
 }
 
