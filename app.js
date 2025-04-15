@@ -110,13 +110,13 @@ function switchDirection(direction) {
             banglaToSylhetiTab.classList.remove('active');
             banglaToSylhetiTab.setAttribute('aria-selected', 'false');
             inputLabel.textContent = 'আঞ্চলিক সিলেটি লিখুন';
-            outputLabel.textContent = 'শুদ্ধ বাংলা অনুবাদ';
+            outputLabel.textContent = 'প্রমিত বাংলা অনুবাদ';
         } else {
             banglaToSylhetiTab.classList.add('active');
             banglaToSylhetiTab.setAttribute('aria-selected', 'true');
             sylhetiToBanglaTab.classList.remove('active');
             sylhetiToBanglaTab.setAttribute('aria-selected', 'false');
-            inputLabel.textContent = 'শুদ্ধ বাংলা লিখুন';
+            inputLabel.textContent = 'প্রমিত বাংলা লিখুন';
             outputLabel.textContent = 'আঞ্চলিক সিলেটি অনুবাদ';
         }
         
