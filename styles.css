@@ -908,8 +908,8 @@ textarea:focus {
     }
 
     .icon {
-      width: 27px; /* Reduced icon size */
-      height: 27px; /* Reduced icon size */
+      width: 22px; /* Reduced icon size */
+      height: 22px; /* Reduced icon size */
     }
 
     @keyframes pulse {
