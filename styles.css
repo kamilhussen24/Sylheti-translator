@@ -883,7 +883,39 @@ textarea:focus {
   }
 }
 
+/* Download */
+.download-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, #4361ee, #4895ef, #4cc9f0);
+      color: white;
+      padding: 10px 24px;
+      font-size: 16px;
+      border: none;
+      border-radius: 40px;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(67, 97, 238, 0.25);
+      transition: all 0.3s ease;
+      animation: pulse 2.5s infinite;
+    }
 
+    .download-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 18px rgba(72, 149, 239, 0.35);
+    }
+
+    .icon {
+      width: 20px;
+      height: 20px;
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(76, 201, 240, 0.35); }
+      70% { box-shadow: 0 0 0 12px rgba(76, 201, 240, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(76, 201, 240, 0); }
+    }
 
 /* Desktop Styles */
         @media (min-width: 768px) {
