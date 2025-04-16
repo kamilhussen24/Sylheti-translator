@@ -5,45 +5,66 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>পৃষ্ঠা পাওয়া যায়নি</title>
   <style>
-    body {
+    * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
+    }
+    body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f4f4f4;
+      background: linear-gradient(135deg, #f9f9f9, #e0e0e0);
+      height: 100vh;
       display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
-      height: 100vh;
       text-align: center;
+      padding: 20px;
     }
-    h1 {
-      font-size: 5rem;
+    .container {
+      max-width: 500px;
+      background-color: #fff;
+      padding: 40px 30px;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+    .container h1 {
+      font-size: 6rem;
       color: #ff4c4c;
-      margin: 0;
+      margin-bottom: 10px;
     }
-    p {
-      font-size: 1.5rem;
-      margin: 10px 0 30px;
+    .container p {
+      font-size: 1.4rem;
       color: #333;
+      margin-bottom: 30px;
     }
-    a {
-      padding: 12px 24px;
+    .container a {
+      display: inline-block;
+      padding: 14px 30px;
       background-color: #007BFF;
-      color: #fff;
+      color: white;
       text-decoration: none;
-      border-radius: 5px;
-      font-weight: bold;
-      transition: background-color 0.3s;
+      font-size: 1rem;
+      border-radius: 8px;
+      transition: background-color 0.3s ease;
     }
-    a:hover {
+    .container a:hover {
       background-color: #0056b3;
+    }
+    @media (max-width: 600px) {
+      .container h1 {
+        font-size: 4rem;
+      }
+      .container p {
+        font-size: 1.1rem;
+      }
     }
   </style>
 </head>
 <body>
-  <h1>404</h1>
-  <p>দুঃখিত! আপনি যে পৃষ্ঠাটি খুঁজছেন তা পাওয়া যায়নি।</p>
-  <a href="/">Back to Home</a>
+  <div class="container">
+    <h1>404</h1>
+    <p>আপনি যে পৃষ্ঠাটি খুঁজছেন, তা পাওয়া যায়নি।</p>
+    <a href="/">Back to Home</a>
+  </div>
 </body>
 </html>
