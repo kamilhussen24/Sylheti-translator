@@ -1,0 +1,14 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "co.median.android.jlrnql",
+      "sha256_cert_fingerprints": [
+        "88:F1:3B:28:47:F2:20:41:ED:1B:17:48:58:B9:6F:74:50:BE:F1:6E:69:F7:C3:4E:85:7A:02:0E:40:93:27:2C"
+      ]
+    }
+  }
+]
