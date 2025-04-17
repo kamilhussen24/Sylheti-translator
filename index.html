@@ -100,8 +100,6 @@
   
 </script>
 
-<button onclick="shareContent()">শেয়ার করুন</button>
-
 <script>
   function shareContent() {
     const shareData = {
@@ -130,7 +128,7 @@
       })
       .catch((err) => {
         console.error('কপি করতে সমস্যা হয়েছে:', err);
-        alert("দুঃখিত, লিংক কপি করা যায়নি।");
+        alert("দুঃখিত, লিংক কপি করা হয়নি।");
       });
   }
 </script>
