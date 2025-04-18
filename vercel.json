@@ -1,7 +1,7 @@
 {
   "rewrites": [
     { "source": "/about", "destination": "/about.html" },
-    { "source": "/bangla-to-sylheti-nagri", "destination": "/bangla-to-sylheti-nagri.html" },
+    { "source": "/sylheti-nagri-to-bangla", "destination": "/sylheti-nagri-to-bangla.html" },
     { "source": "/how-to-add", "destination": "/how-to-add.html" }
   ]
 }
