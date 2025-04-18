@@ -1,0 +1,465 @@
+:root {
+    --primary-color: #4361ee;
+    --primary-light: #4895ef;
+    --secondary-color: #3f37c9;
+    --accent-color: #4cc9f0;
+    --success-color: #4ade80;
+    --error-color: #f87171;
+    --warning-color: #fbbf24;
+    --dark-color: #1e293b;
+    --medium-color: #64748b;
+    --light-color: #f8fafc;
+    --bg-color: #f1f5f9;
+    --card-color: #ffffff;
+    --border-color: #e2e8f0;
+    --font-primary: 'Baloo Da 2', cursive;
+    --side-gap-desktop: 10px;
+    --header-height: 60px;
+    --side-gap-mobile: 5px;
+}
+
+
+body {
+    background-color: var(--bg-color);
+    color: var(--dark-color);
+    line-height: 1.6;
+    min-height: 100vh;
+    font-weight: 500;
+}
+
+
+/* Header Container */
+.sylheti-manu-header-container {
+    width: 100%;
+    background-color: var(--bg-color);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 1000;
+    border-radius: 16px;
+    padding: 0 var(--side-gap-mobile);
+    margin: 8px auto 0 auto;
+    max-width: 760px;
+}
+
+
+.header-container {
+    width: 100%;
+    position: relative;
+    z-index: 1000;
+    border-radius: 16px;
+    padding: 0 var(--side-gap-mobile);
+    margin: 8px auto 0 auto;
+    max-width: 760px;
+}
+
+
+/* Main Header */
+.sylheti-manu-main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: var(--header-height);
+    padding: 0 var(--side-gap-mobile);
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+}
+
+/* Menu Button */
+.sylheti-manu-menu-btn {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background: none;
+    border: none;
+    z-index: 1001;
+}
+
+.sylheti-manu-menu-line {
+    width: 24px;
+    height: 2px;
+    background-color: var(--dark-color);
+    margin: 3px 0;
+    transition: all 0.3s ease;
+}
+
+.sylheti-manu-menu-btn.active .sylheti-manu-menu-line:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.sylheti-manu-menu-btn.active .sylheti-manu-menu-line:nth-child(2) {
+    opacity: 0;
+}
+
+.sylheti-manu-menu-btn.active .sylheti-manu-menu-line:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Logo */
+.sylheti-manu-logo {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--dark-color);
+    text-decoration: none;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.sylheti-manu-logo-highlight {
+    color: var(--primary-color);
+}
+
+/* Notification Icon */
+.sylheti-manu-share-btn {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.sylheti-manu-share-btn .fa-share-alt {
+    font-size: 25px;
+}
+
+.sylheti-manu-notification-badge {
+    position: absolute;
+    top: 3px;
+    right: 6px;
+    width: 16px;
+    height: 16px;
+    background-color: var(--error-color);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+/* Dropdown */
+.sylheti-manu-dropdown-container {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: var(--bg-color);
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.5s cubic-bezier(0.25, 0.8, 0.25, 1), border-radius 0.3s ease 0.2s;
+    border-radius: 0;
+    z-index: 999;
+}
+
+.sylheti-manu-dropdown-container.active {
+    max-height: 500px;
+    border-radius: 10px;
+    transition: max-height 0.5s cubic-bezier(0.25, 0.8, 0.25, 1), border-radius 0.2s ease;
+}
+
+.sylheti-manu-dropdown-menu {
+    padding: 10px 0;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding-left: var(--side-gap-mobile);
+    padding-right: var(--side-gap-mobile);
+}
+
+.sylheti-manu-menu-item {
+    padding: 10px 3px;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--dark-color);
+    font-weight: 500;
+    transition: background-color 0.2s;
+}
+
+.sylheti-manu-menu-item:last-child {
+    border-bottom: none;
+}
+
+.sylheti-manu-menu-item:hover {
+    background-color: var(--bg-color);
+}
+
+.sylheti-manu-menu-icon {
+    margin-right: 12px;
+    font-size: 18px;
+    color: var(--primary-color);
+}
+
+/* header End */
+
+
+/* Main Page */
+        .app {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+@media (max-width: 767.98px) {
+    .app {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1023.98px) {
+    .app {
+        padding-left: 120px;
+        padding-right: 120px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .app {
+        padding-left: 100px;
+        padding-right: 100px;
+    }
+}
+
+
+.translation-box {
+    min-height: 120px;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+
+body {
+    font-family: var(--font-primary);
+    background-color: var(--bg-color);
+    color: var(--dark-color);
+    transition: background-color 0.3s ease;
+    
+}
+
+
+/* Card styles */
+.card {
+    background-color: var(--card-color);
+    border-color: var(--border-color);
+    transition: all 0.3s ease;
+    
+}
+
+/* Textarea styles */
+.form-control {
+    background-color: var(--card-color);
+    border-color: var(--border-color);
+    color: var(--dark-color);
+    font-family: var(--font-primary);
+    transition: all 0.3s ease;
+    resize: none;
+    min-height: 200px;
+    padding: 1rem;
+}
+
+.form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.25rem rgba(67, 97, 238, 0.25);
+}
+
+/* Button styles */
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+}
+
+.btn-outline-primary {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
+}
+
+/* Nagri text specific styles */
+#nagri {
+    font-size: 1.4rem;
+    line-height: 1.8;
+    font-family: 'Surma', var(--font-primary);
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .form-control {
+        font-size: 1rem;
+    }
+    
+    #nagri {
+        font-size: 1.2rem;
+    }
+}
+
+/* Font face for Syloti Nagri */
+@font-face {
+    font-family: 'Surma';
+    src: url('../fonts/Surma.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/Surma.woff') format('woff'),
+         url('../fonts/Surma.ttf') format('truetype'),
+         url('../fonts/Surma.svg#Surma') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    unicode-range: U+A800-A82F;
+}
+
+/* Animation for copy button */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.copy-btn .bi-check2 {
+    display: none;
+    animation: fadeIn 0.3s ease;
+}
+
+.copied .bi-clipboard {
+    display: none;
+}
+
+.copied .bi-check2 {
+    display: inline-block;
+}
+
+
+/* Footer styles */
+footer {
+    background-color: var(--card-color) !important;
+    border-color: var(--border-color) !important;
+}
+
+
+/* ক্রেডিট সিএসএস */
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.social-link {
+    color: var(--medium-color);
+    font-size: 1.2rem;
+    transition: color 0.3s;
+    padding: 5px;
+    border-radius: 50%;
+}
+
+.social-link:hover {
+    color: var(--primary-color);
+    background-color: rgba(67, 97, 238, 0.1);
+}
+
+.custom-footer {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    color: black;
+    text-align: center;
+    padding: 8px 16px; /* মোবাইল ডিফল্ট প্যাডিং */
+    font-size: 14px;
+    z-index: 1000;
+}
+
+.custom-footer-credit {
+    margin: 0;
+    font-family: 'Arial', 
+}
+
+.custom-footer-credit a {
+    color: #4361ee; /* লিংকের রঙ নীল */
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.custom-footer-credit a:hover {
+    text-decoration: underline; /* হোভার করলে আন্ডারলাইন হবে */
+}
+
+.custom-footer-credit strong {
+    color: #4361ee; /* Kamil নামটা নীল করতে */
+}
+
+
+/* কাস্টম সিএসএস */
+        .text-box-container {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .translation-box {
+            height: 150px; /* ছোট উচ্চতা */
+            min-height: 150px;
+            font-size: 1.1rem;
+            padding: 15px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        #nagri {
+            font-family: 'Surma', 'Baloo Da 2', cursive;
+            font-size: 1.3rem;
+        }
+
+        .action-buttons {
+            margin-top: 12px;
+            display: flex;
+            gap: 10px;
+            justify-content: space-between;
+        }
+
+        @media (max-width: 768px) {
+            .translation-box {
+                height: 130px;
+                min-height: 130px;
+                font-size: 1rem;
+                padding: 12px;
+            }
+
+            #nagri {
+                font-size: 1.2rem;
+            }
+
+            .action-buttons .btn {
+                padding: 5px 10px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .translation-box {
+                height: 120px;
+                min-height: 120px;
+            }
+        }
