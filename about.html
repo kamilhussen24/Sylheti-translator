@@ -69,17 +69,34 @@
 
 <script>
   function shareContent() {
+    const shareData = {
+      title: 'সিলেটি থেকে বাংলা ট্রান্সলেটর',
+      text: 'দেখে আসুন নতুন সিলেটি ট্রান্সলেটর:',
+      url: 'https://sylheti-translator.vercel.app/'
+    };
+
     if (navigator.share) {
-      navigator.share({
-        title: 'সিলেটি থেকে প্রমিত বাংলা ট্রান্সলেটর',
-        text: 'দেখে আসুন নতুন সিলেটি ট্রান্সলেটর:',
-        url: 'https://sylheti-translator.vercel.app'
-      })
-      .then(() => console.log('Shared successfully'))
-      .catch((error) => console.log('Sharing failed', error));
+      navigator.share(shareData)
+        .then(() => console.log('Shared successfully'))
+        .catch((error) => {
+          console.log('Sharing failed, fallback to copy', error);
+          fallbackCopy(shareData);
+        });
     } else {
-      alert('Sharing not supported on this browser/device');
+      fallbackCopy(shareData);
     }
+  }
+
+  function fallbackCopy(data) {
+    const fullText = `${data.text} ${data.url}`;
+    navigator.clipboard.writeText(fullText)
+      .then(() => {
+        alert("লিংক কপি হয়েছে! এখন আপনার বন্ধুদের সাথে শেয়ার করুন।");
+      })
+      .catch((err) => {
+        console.error('কপি করতে সমস্যা হয়েছে:', err);
+        alert("দুঃখিত, লিংক কপি করা হয়নি।");
+      });
   }
 </script>
 </head>
