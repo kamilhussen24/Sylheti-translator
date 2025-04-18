@@ -6,12 +6,12 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Primary Meta Tags -->
-<title>সিলেটি নাগরি টু বাংলা | Sylheti Translator</title>
-<meta name="description" content="সিলেটি নাগরি থেকে বাংলা এবং বাংলা থেকে সিলেটি নাগরি রূপান্তরের জন্য সহজ ও ফ্রি অনলাইন টুল। এক ক্লিকে নাগরি-বাংলা অনুবাদ করুন এখনই।">
-<meta name="keywords" content="সিলেটি নাগরি, বাংলা অনুবাদ, Sylheti Nagri, Bangla Converter, নাগরি লিপি, বাংলা রূপান্তর, Sylheti Translator, বাংলা নাগরি অনুবাদক">
+<title>বাংলা টু সিলেটি নাগরি | Sylheti Translator</title>
+<meta name="description" content="সিলেটি নাগরি থেকে বাংলা এবং বাংলা থেকে সিলেটি নাগরি রূপান্তরের জন্য সহজ ও ফ্রি অনলাইন টুল। এক ক্লিকে Bangla to sylheti Nagri করুন এখনই।">
+<meta name="keywords" content="সিলেটি নাগরি টু বাংলা , Sylheti Nagri, Bangla to sylheti Nagri Converter, নাগরি লিপি, বাংলা রূপান্তর, Sylheti Translator, বাংলা নাগরি অনুবাদক">
 <meta name="author" content="Kamil Hussen">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://sylheti-translator.vercel.app/bangla-to-sylheti-nagri/">
+<link rel="canonical" href="https://sylheti-translator.vercel.app/bangla-to-sylheti-nagri">
 
 <!-- Favicon -->
 <link rel="icon" href="image/favicon.png" sizes="64x64" type="image/png">
@@ -30,16 +30,16 @@
 <link rel="manifest" href="manifest.json">
 	
 <!-- Open Graph / Facebook -->
-<meta property="og:title" content="সিলেটি নাগরি টু বাংলা | Sylheti Translator">
-<meta property="og:description" content="একটি সহজ, ফ্রি ও দ্রুত অনুবাদক টুল যা সিলেটি নাগরি লিপিকে বাংলা এবং বাংলা লিপিকে সিলেটি নাগরিতে রূপান্তর করে। এখনই চেষ্টা করুন!">
+<meta property="og:title" content="বাংলা টু সিলেটি নাগরি | Sylheti Translator">
+<meta property="og:description" content="সহজ ও ফ্রি অনলাইন টুল। এক ক্লিকে Bangla to sylheti Nagri করুন এখনই।">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://sylheti-translator.vercel.app/bangla-to-sylheti-nagri/">
 <meta property="og:image" content="https://raw.githubusercontent.com/kamilhussen24/sylheti-translator/refs/heads/main/image/sylheti-nagri.jpg">
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="সিলেটি নাগরি টু বাংলা | Sylheti Translator">
-<meta name="twitter:description" content="সিলেটি নাগরি ও বাংলা লিপির মধ্যে সহজ রূপান্তর করতে ব্যবহার করুন আমাদের এই ফ্রি অনলাইন টুল। দ্রুত, নির্ভুল ও ইউজার-ফ্রেন্ডলি।">
+<meta name="twitter:title" content="বাংলা টু সিলেটি নাগরি | Sylheti Translator">
+<meta name="twitter:description" content="সহজ ও ফ্রি অনলাইন টুল। এক ক্লিকে Bangla to sylheti Nagri করুন এখনই।"">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/kamilhussen24/sylheti-translator/refs/heads/main/image/sylheti-nagri.jpg">
     
     
@@ -127,25 +127,9 @@
                             <h3 class="fw-bold mb-2">সিলেটি নাগরি থেকে বাংলা লিপি রূপান্তর</h3>
                             <p class="text-muted mb-0">এটি কোনো অনুবাদক নয় — লিপির বদলমাত্র</p>
                         </div>
-
-                        <!-- নাগরি ইনপুট -->
-                        <label class="form-label fw-bold text-primary mb-2">সিলেটি নাগরি</label>
-                        <textarea 
-                            id="nagri" 
-                            class="form-control translation-box shadow-sm" 
-                            placeholder="ꠁꠘꠧ ꠘꠣꠉꠞꠤꠔ ꠟꠦꠈꠧꠇ꠆ꠇꠣ..."
-                            oninput="convertNagriToBanglaRealtime('nagri')"></textarea>
-                        <div class="action-buttons d-flex gap-2 mt-2">
-                            <button onclick="copyText('nagri', this)" class="btn btn-sm btn-outline-primary flex-grow-1">
-                                <i class="bi bi-clipboard me-1"></i> কপি
-                            </button>
-                            <button onclick="clearText('nagri'); clearText('bangla');" class="btn btn-sm btn-outline-danger">
-                                <i class="bi bi-x-lg"></i>
-                            </button>
-                        </div>
-
+                        
                         <!-- বাংলা রেজাল্ট -->
-                        <label class="form-label fw-bold text-primary mt-4 mb-2">প্রমিত বাংলা</label>
+                        <label class="form-label fw-bold text-primary mb-2">প্রমিত বাংলা</label>
                         <textarea 
                             id="bangla" 
                             class="form-control translation-box shadow-sm" 
@@ -159,10 +143,26 @@
                                 <i class="bi bi-x-lg"></i>
                             </button>
                         </div>
-
+                        
+<!-- নাগরি ইনপুট -->
+                        <label class="form-label fw-bold text-primary mt-4 mb-2">সিলেটি নাগরি</label>
+                        <textarea 
+                            id="nagri" 
+                            class="form-control translation-box shadow-sm" 
+                            placeholder="ꠁꠘꠧ ꠘꠣꠉꠞꠤꠔ ꠟꠦꠈꠧꠇ꠆ꠇꠣ..."
+                            oninput="convertNagriToBanglaRealtime('nagri')"></textarea>
+                        <div class="action-buttons d-flex gap-2 mt-2">
+                            <button onclick="copyText('nagri', this)" class="btn btn-sm btn-outline-primary flex-grow-1">
+                                <i class="bi bi-clipboard me-1"></i> কপি
+                            </button>
+                            <button onclick="clearText('nagri'); clearText('bangla');" class="btn btn-sm btn-outline-danger">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                        
                         <!-- রূপান্তর বোতাম -->
                         <div class="text-center mt-4">
-                            <a href="#" class="btn btn-primary px-4 rounded-pill">
+                            <a href="sylheti-nagri-to-bangla.html" class="btn btn-primary px-4 rounded-pill">
                                 <i class="bi bi-arrow-left-right me-2"></i>টাইপিং করার সাথে সাথে দেখা যাবে
                             </a>
                         </div>
