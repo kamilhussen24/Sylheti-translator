@@ -299,7 +299,7 @@ translationsRef.once('value').then((snapshot) => {
     }
 }
 
-// Handle user feedback
+    // Handle user feedback
 function handleFeedback(isCorrect) {
     try {
         if (!lastTranslationId) {
@@ -309,125 +309,28 @@ function handleFeedback(isCorrect) {
 
         const translationRef = database.ref(`translations/${lastTranslationId}`);
         
-        if (isCorrect) {
-            // Increment votes for correct translation
-            translationRef.transaction((translation) => {
-                if (translation) {
+        // For both correct and incorrect, we'll just update votes
+        translationRef.transaction((translation) => {
+            if (translation) {
+                if (isCorrect) {
                     translation.votes = (translation.votes || 0) + 1;
+                } else {
+                    translation.votes = (translation.votes || 0) - 1;
+                    // Ensure votes don't go negative
+                    if (translation.votes < 0) translation.votes = 0;
                 }
-                return translation;
-            }).then(() => {
-                showNotification('ধন্যবাদ আপনার ফিডব্যাকের জন্য!');
-            }).catch(error => {
-                showErrorModal('ফিডব্যাক সংরক্ষণ করতে সমস্যা হয়েছে।');
-                console.error('Feedback save error:', error);
-            });
-        } else {
-            // Show correction input
-            correctionBox.style.display = 'block';
-            correctionBox.querySelector('textarea').focus();
-        }
+            }
+            return translation;
+        }).then(() => {
+            showNotification('ধন্যবাদ আপনার ফিডব্যাকের জন্য!');
+        }).catch(error => {
+            showErrorModal('ফিডব্যাক সংরক্ষণ করতে সমস্যা হয়েছে।');
+            console.error('Feedback save error:', error);
+        });
+
     } catch (error) {
         showErrorModal('ফিডব্যাক প্রক্রিয়ায় সমস্যা হয়েছে।');
         console.error('Feedback process error:', error);
-    }
-}
-
-// Cancel correction
-function cancelCorrection() {
-    try {
-        correctionBox.style.display = 'none';
-        correctionBox.querySelector('textarea').value = '';
-    } catch (error) {
-        console.error('Cancel correction error:', error);
-    }
-}
-
-// Submit correction
-function submitCorrection() {
-    try {
-        const correctionText = correctionBox.querySelector('textarea').value.trim();
-        if (!correctionText) {
-            showNotification('একটি সংশোধন লিখুন', 'error');
-            return;
-        }
-
-        const feedbackRef = database.ref('userFeedback').push();
-        const correctionsRef = database.ref('translations');
-
-        // Save feedback regardless
-        feedbackRef.set({
-            translationId: lastTranslationId,
-            feedback: "incorrect",
-            suggestedCorrection: correctionText,
-            timestamp: firebase.database.ServerValue.TIMESTAMP
-        }).catch(error => {
-            showErrorModal('সংশোধন সংরক্ষণ করতে সমস্যা হয়েছে।');
-            console.error('Correction save error:', error);
-        });
-
-        // Check if similar correction already exists
-        correctionsRef.once('value').then(snapshot => {
-            const translations = snapshot.val();
-            let matchFound = false;
-            let matchedId = null;
-
-            Object.entries(translations).forEach(([id, trans]) => {
-                const original = trans[currentDirection === 'sylhetiToBangla' ? 'sylheti' : 'bangla'];
-                const suggestion = trans[currentDirection === 'sylhetiToBangla' ? 'bangla' : 'sylheti'];
-
-                if (
-                    original?.toLowerCase() === translations[lastTranslationId]?.[currentDirection === 'sylhetiToBangla' ? 'sylheti' : 'bangla']?.toLowerCase() &&
-                    suggestion?.trim().toLowerCase() === correctionText.toLowerCase()
-                ) {
-                    matchFound = true;
-                    matchedId = id;
-                }
-            });
-
-            if (matchFound && matchedId) {
-                // If already exists, increase vote
-                database.ref(`translations/${matchedId}`).transaction((trans) => {
-                    if (trans) {
-                        trans.votes = (trans.votes || 0) + 1;
-                    }
-                    return trans;
-                }).then(() => {
-                    showNotification('এই সংশোধন পূর্বে ছিল, ভোট যুক্ত হয়েছে!');
-                    correctionBox.style.display = 'none';
-                    correctionBox.querySelector('textarea').value = '';
-                    outputText.innerHTML = `<p>${correctionText}</p>`;
-                });
-            } else {
-                // If not exists, create a new translation entry
-                const newRef = correctionsRef.push();
-                const newData = {};
-
-                if (currentDirection === 'sylhetiToBangla') {
-                    newData.sylheti = translations[lastTranslationId].sylheti;
-                    newData.bangla = correctionText;
-                } else {
-                    newData.bangla = translations[lastTranslationId].bangla;
-                    newData.sylheti = correctionText;
-                }
-
-                newData.votes = 1;
-
-                newRef.set(newData).then(() => {
-                    showNotification('আপনার সংশোধন যুক্ত হয়েছে!');
-                    correctionBox.style.display = 'none';
-                    correctionBox.querySelector('textarea').value = '';
-                    outputText.innerHTML = `<p>${correctionText}</p>`;
-                });
-            }
-        }).catch(error => {
-            showErrorModal('অনুবাদ আপডেট করতে সমস্যা হয়েছে।');
-            console.error('Translation update error:', error);
-        });
-
-    } catch (error) {
-        showErrorModal('সংশোধন জমা দিতে সমস্যা হয়েছে।');
-        console.error('Submit correction error:', error);
     }
 }
 
