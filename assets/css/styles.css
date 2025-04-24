@@ -883,6 +883,7 @@ textarea:focus {
   }
 }
 
+
 /* Download */
 .download-button {
       display: inline-flex;
@@ -950,3 +951,28 @@ textarea:focus {
             }
             
         }
+
+.warning-button-new {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 10px; /* একটু বেশি padding যাতে text মাঝখানে থাকে */
+  margin: 17px auto;
+  font-size: 12px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #cc3300;
+  border: none;
+  border-radius: 6px;
+  text-decoration: none;
+  box-shadow: 0 4px 8px rgba(217, 83, 79, 0.5); /* একটু বড় shadow */
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+line-height: 1.8;
+}
+
+.warning-button-new:hover {
+  background-color: #c9302c;
+  transform: scale(1.06); /* একটু বড় হয় ক্লিকের মতো */
+  box-shadow: 0 6px 12px rgba(201, 48, 44, 0.6); /* hover এ shadow বাড়ে */
+}
