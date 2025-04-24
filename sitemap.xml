@@ -1,20 +1,14 @@
 <?xml version="1.0" ?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   <url>
-    <loc>https://sylheti-translator.vercel.app/</loc>
-    <lastmod>2025-04-18T22:01:37+06:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://sylheti-translator.vercel.app/bangla-to-sylheti-nagri</loc>
-    <lastmod>2025-04-18T22:06:49+06:00</lastmod>
+    <loc>https://sylheti-translator.vercel.app/about</loc>
+    <lastmod>2025-04-18T17:07:51+06:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sylheti-translator.vercel.app/sylheti-nagri-to-bangla</loc>
-    <lastmod>2025-04-18T22:07:31+06:00</lastmod>
+    <loc>https://sylheti-translator.vercel.app/bangla-to-sylheti-nagri</loc>
+    <lastmod>2025-04-18T22:06:49+06:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -25,9 +19,15 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sylheti-translator.vercel.app/about</loc>
-    <lastmod>2025-04-18T17:07:51+06:00</lastmod>
+    <loc>https://sylheti-translator.vercel.app/sylheti-nagri-to-bangla</loc>
+    <lastmod>2025-04-18T22:07:31+06:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://sylheti-translator.vercel.app/</loc>
+    <lastmod>2025-04-23T23:35:23+06:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
   </url>
 </urlset>
