@@ -1,1 +1,244 @@
 
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy for Sylheti Translator</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali&display=swap" rel="stylesheet">
+    
+    <!-- Theme color for modern browsers -->
+<meta name="theme-color" content="#4361ee">
+
+<!-- Chrome, Firefox OS and Opera -->
+<meta name="theme-color" content="#4361ee">
+
+<!-- Windows Phone -->
+<meta name="msapplication-navbutton-color" content="#4361ee">
+
+<!-- iOS Safari -->
+<meta name="apple-mobile-web-app-status-bar-style" content="#4361ee">
+	
+<link rel="stylesheet" href="assets/css/styles.css">
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyBaTKFY31DzZJj--qKHHnpQ_K5m5kxka-s",
+    authDomain: "sylhetitranslator.firebaseapp.com",
+    databaseURL: "https://sylhetitranslator-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "sylhetitranslator",
+    storageBucket: "sylhetitranslator.firebasestorage.app",
+    messagingSenderId: "947926921985",
+    appId: "1:947926921985:web:745b3366f007cddfe6a100",
+    measurementId: "G-T2S2MZJJEQ"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+  
+  // Toggle menu functionality
+        const menuBtn = document.querySelector('.menu-btn');
+        const dropdownContainer = document.querySelector('.dropdown-container');
+
+        menuBtn.addEventListener('click', () => {
+            menuBtn.classList.toggle('active');
+            dropdownContainer.classList.toggle('active');
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.header-container')) {
+                menuBtn.classList.remove('active');
+                dropdownContainer.classList.remove('active');
+            }
+        });
+  
+</script>
+
+<script>
+  function shareContent() {
+    const shareData = {
+      title: 'সিলেটি থেকে বাংলা ট্রান্সলেটর',
+      text: 'দেখে আসুন নতুন সিলেটি ট্রান্সলেটর:',
+      url: 'https://sylheti-translator.vercel.app/'
+    };
+
+    if (navigator.share) {
+      navigator.share(shareData)
+        .then(() => console.log('Shared successfully'))
+        .catch((error) => {
+          console.log('Sharing failed, fallback to copy', error);
+          fallbackCopy(shareData);
+        });
+    } else {
+      fallbackCopy(shareData);
+    }
+  }
+
+  function fallbackCopy(data) {
+    const fullText = `${data.text} ${data.url}`;
+    navigator.clipboard.writeText(fullText)
+      .then(() => {
+        alert("লিংক কপি হয়েছে! এখন আপনার বন্ধুদের সাথে শেয়ার করুন।");
+      })
+      .catch((err) => {
+        console.error('কপি করতে সমস্যা হয়েছে:', err);
+        alert("দুঃখিত, লিংক কপি করা হয়নি।");
+      });
+  }
+</script>
+</head>
+<body>
+	<div class="header-container">
+        <div class="main-header">
+            <!-- Menu Button -->
+            <button class="menu-btn">
+                <span class="menu-line"></span>
+                <span class="menu-line"></span>
+                <span class="menu-line"></span>
+            </button>
+
+            <!-- Logo -->
+            <a href="https://sylheti-translator.vercel.app/" class="logo">Sylheti<span class="logo-highlight">Words</span></a>
+
+            <!-- Notification -->
+            <button class="share-btn" onclick="shareContent()">
+    <i class="fas fa-share-alt share-icon"></i>
+    <span class="notification-badge">3</span>
+</button>
+
+            <!-- Dropdown Container -->
+            <div class="dropdown-container">
+                <div class="dropdown-menu">
+                    <a href="https://sylheti-translator.vercel.app/" class="menu-item">
+    <i class="fas fa-home menu-icon"></i>
+    Home
+</a>
+
+<a href="https://sylheti-translator.vercel.app/about" class="menu-item">
+    <i class="fas fa-info-circle menu-icon"></i>
+    About
+</a>
+<a href="https://kamilhussen24.github.io/about-me" class="menu-item">
+    <i class="fas fa-phone-alt menu-icon"></i>
+    Contact
+</a>
+<a href="https://sylheti-translator.vercel.app/how-to-add" class="menu-item">
+    <i class="fas fa-plus-circle menu-icon"></i>
+    How to add
+</a>
+             </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="app-container">
+        
+        <main class="main-content">
+            
+            <div class="translation-card">
+                <div class="language-tabs">
+                	
+                	<div class="input-container">
+                    <div class="input-header">
+                        
+                    </div>
+                    
+                    <div style="font-family: Arial, sans-serif; font-size: 16px; color: #333; line-height: 1.8;">
+
+  <h2 style="font-size: 24px; margin-bottom: 20px;">Privacy Policy for Sylheti Translator</h2>
+
+    <p>Last Updated: April 28, 2025</p>
+    
+    <p>Sylheti Translator ("the App" or "Web App"), developed by Median.co ("we," "us," or "our"), is a tool for translating text to and from the Sylheti language, available as a mobile application on Google Play and as a web application at https://sylheti-translator.vercel.app/. This Privacy Policy explains how we collect, use, share, and protect your information when you use either version of Sylheti Translator. We are committed to safeguarding your privacy and ensuring transparency in our data practices.</p>
+    
+    <h2>1. Information We Collect</h2>
+    <p>We collect the following types of information to provide and improve the App and Web App:</p>
+    <ul>
+        <li><b>User-Provided Data</b>: Text you input for translation in the App or Web App. This data is processed to generate translations and is not stored unless you explicitly save translations within the App or Web App.</li>
+        <li><b>Analytics Data</b>: Non-personally identifiable information about how you interact with the App or Web App, such as pages visited, features used, session duration, and device or browser information (e.g., device type, operating system, browser type). This helps us improve performance and user experience.</li>
+        <li><b>Technical Data</b>: Information such as IP addresses, crash reports, logs, and cookies (for the Web App) collected during operation to diagnose issues, ensure functionality, and maintain security.</li>
+    </ul>
+    
+    <h2>2. How We Use Your Information</h2>
+    <p>We use the collected information to:</p>
+    <ul>
+        <li>Process and deliver translation services based on your input text.</li>
+        <li>Enhance the App and Web App’s functionality and user experience through analytics.</li>
+        <li>Troubleshoot technical issues using crash reports, logs, and technical data.</li>
+        <li>Analyze usage patterns to develop new features and improve cultural accessibility for Sylheti speakers.</li>
+        <li>Secure the App and Web App against unauthorized access or misuse.</li>
+    </ul>
+    
+    <h2>3. Sharing Your Information</h2>
+    <p>We do not sell, trade, or share your personal information with third parties, except as follows:</p>
+    <ul>
+        <li><b>Service Providers</b>: We may share anonymized analytics or technical data with trusted third-party providers (e.g., analytics or hosting services) to support the App and Web App. These providers are contractually obligated to protect your data.</li>
+        <li><b>Legal Obligations</b>: We may disclose information if required by law, regulation, or to protect our rights, safety, or property.</li>
+    </ul>
+    
+    <h2>4. Data Storage and Security</h2>
+    <p>User-entered translation text is processed temporarily and not stored unless saved by you. Saved translations are stored on your device (for the App) or our secure servers (for the Web App). We implement industry-standard security measures, such as encryption and access controls, to protect your data from unauthorized access, loss, or misuse. However, no system is fully secure, and we cannot guarantee absolute security.</p>
+    
+    <h2>5. Data Retention</h2>
+    <p>Translation inputs are not retained after processing unless you save them. Saved translations are kept on your device or our servers until you delete them. Analytics and technical data are retained only as long as necessary to improve the App and Web App or comply with legal requirements.</p>
+    
+    <h2>6. Cookies and Tracking (Web App)</h2>
+    <p>The Web App may use cookies or similar technologies to enhance functionality, such as maintaining session states or tracking usage patterns. You can manage cookie preferences through your browser settings. Disabling cookies may affect certain features of the Web App.</p>
+    
+    <h2>7. Children’s Privacy</h2>
+    <p>The App and Web App are not designed for children under 13. We do not knowingly collect personal information from children under 13. If we discover such data has been collected, we will delete it immediately.</p>
+    
+    <h2>8. Your Choices and Rights</h2>
+    <p>You have the following options regarding your data:</p>
+    <ul>
+        <li>Delete saved translations within the App or Web App.</li>
+        <li>Opt out of analytics data collection by adjusting settings in the App (if available) or contacting us.</li>
+        <li>Manage cookies for the Web App via your browser settings.</li>
+        <li>Stop using the App or Web App to prevent further data collection.</li>
+    </ul>
+    <p>If you are in certain regions (e.g., the EU or California), you may have additional rights, such as accessing, correcting, or deleting your data. Contact us to exercise these rights.</p>
+    
+    <h2>9. Third-Party Services</h2>
+    <p>The App and Web App may integrate third-party services, such as analytics tools or hosting providers, which have their own privacy policies. We encourage you to review their policies to understand their data practices.</p>
+    
+    <h2>10. Changes to This Privacy Policy</h2>
+    <p>We may update this Privacy Policy to reflect changes in our practices, technology, or legal requirements. Significant changes will be communicated through the App, Web App, or by updating the "Last Updated" date above. Please review this policy regularly.</p>
+    
+    <h2>11. Contact Us</h2>
+    <p>For questions, concerns, or to exercise your data rights, please contact us at:</p>
+    <p>Email: kamil.chat24@gmail.com <br>
+    Address: Barlekha moulovibazar, Sylhet</p>
+    
+    <p>Thank you for choosing Sylheti Translator. We value your trust and are dedicated to protecting your privacy.</p>
+
+</div>
+    </div>
+        </main>
+
+        <footer class="app-footer">
+            <p>ভুল হলে নতুন শব্দ বাক্য যুক্ত করুন এই ট্রান্সলেটরটি সময়ের সাথে সাথে আপনার সহায়তায় আরও উন্নত হবে ।</p>
+            <div class="social-links">
+                <a href="https://facebook.com/kamilhussen24" class="social-link" aria-label="ফেসবুক"><i class="fab fa-facebook"></i></a>
+                <a href="https://x.com/kamilhussen24?s=09" class="social-link" aria-label="টুইটার"><i class="fab fa-twitter"></i></a>
+                <a href="https://t.me/kamildex" class="social-link" aria-label="টেলিগ্রাম"><i class="fab fa-telegram"></i></a>
+            </div>
+            <footer class="custom-footer">
+    <p class="custom-footer-credit">Designed by<strong><a href="https://kamilhussen24.github.io/" target="_blank">Kamil Hussen</a></strong>&copy;2025</p>
+</footer>
+    </div>
+</body>
+</html>
