@@ -26,7 +26,6 @@ Instead, it is a user-contributed platform designed to collect, compare, and gro
 
 You can try the live version of the site here:  
 **[Live Website Link](https://sylheti-translator.vercel.app/)**  
-*(replace with your domain or GitHub Pages link)*
 
 ---
 
