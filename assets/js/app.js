@@ -381,7 +381,7 @@ function addNewTranslation() {
         }
 
         // Check for special characters (e.g., punctuation marks) in both inputs
-        const invalidChars = /[.,'।-"*?!]/;
+        const invalidChars = /[.,'।*?!]/;
         if (invalidChars.test(sylhetiText) || invalidChars.test(banglaText)) {
             showNotification('স্পেশাল ক্যারেক্টার ব্যবহার করা যাবে না', 'error');
             return;
