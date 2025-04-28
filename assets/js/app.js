@@ -221,7 +221,7 @@ const isEnglishText = /^[a-zA-Z\s]*$/.test(text);
 if (isEnglishText) {
     outputText.innerHTML = `
         <p class="no-translation">
-            <i class="fas fa-exclamation-circle"></i> দুঃখিত, ইংরেজি অনুবাদ হবে না
+            <i class="fas fa-exclamation-circle"></i> দুঃখিত, ইংরেজি শব্দ অনুবাদ হবে না
         </p>`;
     translateBtn.disabled = false;
     return;
@@ -237,7 +237,7 @@ translationsRef.once('value').then((snapshot) => {
     // ১. বাংলা কার/মাত্রা সাপোর্ট সহ ডাটাবেজ প্রসেসিং
     Object.entries(translations).forEach(([id, trans]) => {
         const sourceField = currentDirection === 'sylhetiToBangla' ? 'sylheti' : 'bangla';
-        const targetField = currentDirection === 'sylhetিToBangla' ? 'bangla' : 'sylheti';
+        const targetField = currentDirection === 'sylhetiToBangla' ? 'bangla' : 'sylheti';
 
         const sourceWords = trans[sourceField]
             .split(/\s+/)
@@ -376,7 +376,7 @@ function addNewTranslation() {
 
         // Check if both inputs contain only one word
         if (sylhetiText.split(/\s+/).length > 1 || banglaText.split(/\s+/).length > 1) {
-            showNotification('একটি শব্দের বেশি জমা দেয়া যাবে না একবারে', 'error');
+            showNotification('একবারে একটি শব্দের বেশি জমা দেয়া যাবে না', 'error');
             return;
         }
 
@@ -390,7 +390,7 @@ function addNewTranslation() {
         // Check for English characters in both inputs
         const englishRegex = /[a-zA-Z]/;
         if (englishRegex.test(sylhetiText) || englishRegex.test(banglaText)) {
-            showNotification('ইংরেজি শব্দ ব্যবহার করা যাবে না', 'error');
+            showNotification('ইংরেজি শব্দ জমা হবে না', 'error');
             return;
         }
 
