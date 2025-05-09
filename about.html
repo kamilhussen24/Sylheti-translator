@@ -67,11 +67,23 @@
   
 </script>
 
+<!-- Share Notification -->
 <script>
+  function showToast(message, isError = false) {
+    const toast = document.getElementById("notification");
+    toast.textContent = message;
+    toast.style.backgroundColor = isError ? "#dc3545" : "#198754"; // red if error
+    toast.classList.add("show");
+
+    setTimeout(() => {
+      toast.classList.remove("show");
+    }, 3000);
+  }
+
   function shareContent() {
     const shareData = {
       title: 'সিলেটি থেকে বাংলা ট্রান্সলেটর',
-      text: 'দেখে আসুন নতুন সিলেটি ট্রান্সলেটর:',
+      text: 'দেখে আসুন নতুন সিলেটি ট্রান্সলেটর',
       url: 'https://sylheti-translator.vercel.app/'
     };
 
@@ -91,14 +103,15 @@
     const fullText = `${data.text} ${data.url}`;
     navigator.clipboard.writeText(fullText)
       .then(() => {
-        alert("লিংক কপি হয়েছে! এখন আপনার বন্ধুদের সাথে শেয়ার করুন।");
+        showToast("লিংক কপি হয়েছে! এখন বন্ধুদের কাছে পাঠান।");
       })
       .catch((err) => {
         console.error('কপি করতে সমস্যা হয়েছে:', err);
-        alert("দুঃখিত, লিংক কপি করা হয়নি।");
+        showToast("দুঃখিত, লিংক কপি করা হয়নি।", true);
       });
   }
 </script>
+	
 </head>
 <body>
 	<div class="header-container">
