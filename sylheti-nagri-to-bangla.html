@@ -247,10 +247,22 @@
     <script src="assets/js/utilities.js"></script>
     <script src="assets/js/app.js"></script>
     
-    <script>
-cons<!-- Share Notification -->
-<div id="notification" class="notification"></div>
 <script>
+const sylhetiManuBtn = document.querySelector('.sylheti-manu-menu-btn');
+const sylhetiDropdown = document.querySelector('.sylheti-manu-dropdown-container');
+
+sylhetiManuBtn.addEventListener('click', () => {
+    sylhetiManuBtn.classList.toggle('active');
+    sylhetiDropdown.classList.toggle('active');
+});
+
+document.addEventListener('click', (e) => {
+    if (!e.target.closest('.sylheti-manu-header-container')) {
+        sylhetiManuBtn.classList.remove('active');
+        sylhetiDropdown.classList.remove('active');
+    }
+});
+	    
   function showToast(message, isError = false) {
     const toast = document.getElementById("notification");
     toast.textContent = message;
@@ -293,6 +305,8 @@ cons<!-- Share Notification -->
       });
   }
 </script>
+	  <!-- Share Notification -->
+<div id="notification" class="notification"></div>
 </body>
 </html>
 
