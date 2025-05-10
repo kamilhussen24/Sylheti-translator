@@ -104,7 +104,7 @@
     const fullText = `${data.text} ${data.url}`;
     navigator.clipboard.writeText(fullText)
       .then(() => {
-        showToast("লিংক কপি হয়েছে! এখন বন্ধুদের কাছে পাঠান।");
+        showToast("লিংক কপি হয়েছে ! এখন বন্ধুদের কাছে পাঠান।");
       })
       .catch((err) => {
         console.error('কপি করতে সমস্যা হয়েছে:', err);
