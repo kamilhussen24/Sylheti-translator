@@ -202,7 +202,27 @@ body {
 
 /* header End */
 
+/* Notification Toast */
+.notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 15px 25px;
+    border-radius: 8px;
+    background-color: var(--dark-color);
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transform: translateY(100px);
+    opacity: 0;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    max-width: 350px;
+}
 
+.notification.show {
+    transform: translateY(0);
+    opacity: 1;
+}
 /* Main Page */
         .app {
     max-width: 1200px;
