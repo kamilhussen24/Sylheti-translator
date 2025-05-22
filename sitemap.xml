@@ -1,38 +1,44 @@
 <?xml version="1.0" ?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   <url>
-    <loc>https://sylheti-translator.vercel.app/how-to-add</loc>
-    <lastmod>2025-05-15T02:02:29+06:00</lastmod>
+    <loc>https://kamildex.com/how-to-add</loc>
+    <lastmod>2025-05-22T21:49:06+06:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sylheti-translator.vercel.app/bangla-to-sylheti-nagri</loc>
-    <lastmod>2025-05-10T21:38:54+06:00</lastmod>
+    <loc>https://kamildex.com/bangla-to-sylheti-nagri</loc>
+    <lastmod>2025-05-22T21:42:39+06:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sylheti-translator.vercel.app/sylheti-nagri-to-bangla</loc>
-    <lastmod>2025-05-10T21:37:43+06:00</lastmod>
+    <loc>https://kamildex.com/sylheti-nagri-to-bangla</loc>
+    <lastmod>2025-05-22T21:37:42+06:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sylheti-translator.vercel.app/privacy-policy</loc>
-    <lastmod>2025-05-10T21:15:47+06:00</lastmod>
+    <loc>https://kamildex.com/privacy-policy</loc>
+    <lastmod>2025-05-22T21:46:57+06:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sylheti-translator.vercel.app/</loc>
-    <lastmod>2025-05-14T14:12:07+06:00</lastmod>
+    <loc>https://kamildex.com/contact</loc>
+    <lastmod>2025-05-22T21:43:56+06:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://kamildex.com/</loc>
+    <lastmod>2025-05-22T21:58:20+06:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://sylheti-translator.vercel.app/about</loc>
-    <lastmod>2025-05-15T01:57:42+06:00</lastmod>
+    <loc>https://kamildex.com/about</loc>
+    <lastmod>2025-05-22T21:51:04+06:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
