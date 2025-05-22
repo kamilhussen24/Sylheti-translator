@@ -6,7 +6,7 @@ from datetime import datetime
 
 # মেইন কনফিগারেশন
 SITEMAP_FILE = "sitemap.xml"
-BASE_URL = "https://sylheti-translator.vercel.app"
+BASE_URL = "https://kamildex.com"
 HTML_DIR = "./"
 EXCLUDE_FILES = ['404.html','kamil.html']
 EXCLUDE_DIRS = ['test', 'temp']  # নতুন যোগ করা লাইন
