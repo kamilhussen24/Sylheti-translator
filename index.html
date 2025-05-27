@@ -120,45 +120,46 @@ document.addEventListener('DOMContentLoaded', function () {
 </script>
 
 <script>
-  function showToast(message, isError = false) 
+  function showToast(message, isError = false) {
     const toast = document.getElementById("notification");
     toast.textContent = message;
-    toast.style.backgroundColor = isError ? "#dc3545" : "#198754";
+    toast.style.backgroundColor = isError ? "#dc3545" : "#198754"; // red if error
     toast.classList.add("show");
 
-    setTimeout(() => 
+    setTimeout(() => {
       toast.classList.remove("show");
-    , 3000);
-  
+    }, 3000);
+  }
 
-  function shareContent() 
-    const shareData = 
+  function shareContent() {
+    const shareData = {
       title: 'সিলেটি থেকে বাংলা ট্রান্সলেটর',
       text: 'দেখে আসুন নতুন সিলেটি ট্রান্সলেটর',
       url: 'https://play.google.com/store/apps/details?id=co.median.android.jlrnql'
-    ;
+    };
 
-    if (typeof window.AppInventor !== "undefined"        window.AppInventor.setWebViewString) 
-      // অ্যাপে হলে WebViewString পাঠানো হবে
-      window.AppInventor.setWebViewString(`{shareData.text} ${shareData.url}`);
+    if (typeof window.AppInventor !== "undefined" && window.AppInventor.setWebViewString) {
+      // অ্যাপে: WebViewString পাঠানো হবে
+      window.AppInventor.setWebViewString(`${shareData.text} ${shareData.url}`);
     } else if (navigator.share) {
-      // মোবাইল ব্রাউজারে সিস্টেম শেয়ার
+      // মোবাইল ব্রাউজারে: system share
       navigator.share(shareData)
         .then(() => console.log('Shared successfully'))
         .catch((error) => {
-	console.log('Sharing failed, fallback to copy', error);
+          console.log('Sharing failed, fallback to copy', error);
           fallbackCopy(shareData);
-        );
-     else 
-      // ডেস্কটপে fallback
+        });
+    } else {
+      // ডেস্কটপে: কপি করবে
       fallbackCopy(shareData);
-    
+    }
+  }
 
-  function fallbackCopy(data) 
-    const fullText = `{data.text} ${data.url}`;
+  function fallbackCopy(data) {
+    const fullText = `${data.text} ${data.url}`;
     navigator.clipboard.writeText(fullText)
       .then(() => {
-        showToast("লিংক কপি হয়েছে! এখন বন্ধুদের পাঠান।");
+        showToast("লিংক কপি হয়েছে! এখন বন্ধুদের কাছে পাঠান।");
       })
       .catch((err) => {
         console.error('কপি করতে সমস্যা হয়েছে:', err);
