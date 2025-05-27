@@ -160,7 +160,6 @@ document.addEventListener('DOMContentLoaded', function () {
     navigator.clipboard.writeText(fullText)
       .then(() => {
         showToast("লিংক কপি হয়েছে! এখন বন্ধুদের পাঠান।");
-        alert("লিংক কপি হয়েছে ✅ এখন বন্ধুদের ইনবক্সে দিন।");
       })
       .catch((err) => {
         console.error('কপি করতে সমস্যা হয়েছে:', err);
