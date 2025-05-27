@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-<Script>
+<script>
 document.addEventListener('DOMContentLoaded', function () {
   document.querySelectorAll('a').forEach(function (link) {
     link.addEventListener('click', function (e) {
@@ -9,13 +9,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
       // যদি href শুরু হয় "http" দিয়ে এবং "kamildex.com" না থাকে, তাহলে বাইরের লিংক
       if (href && href.startsWith('http') && !href.includes('kamildex.com')) {
-        e.preventDefault();
-        window.AppInventor.setWebViewString(href);
-      }
+        // চেক করো window.AppInventor বিদ্যমান কিনা
+        if (typeof window.AppInventor !== 'undefined' && window.AppInventor.setWebViewString) {
+          e.preventDefault();
+          window.AppInventor.setWebViewString(href);
+        }
+	 }
     });
   });
 });
-</script>
+</script>	
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>সিলেটি থেকে বাংলা | Sylheti Translator</title>
