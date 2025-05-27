@@ -19,26 +19,6 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 </script>
-
-	<script>
-    // পেজ লোড হলে
-    window.addEventListener('load', () => {
-        window.AppInventor.setWebViewString('loaded');
-    });
-
-    // যেকোনো ইনটারনাল লিঙ্কে ক্লিক করলে
-    document.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', (event) => {
-            if (link.href && link.href.includes(window.location.hostname)) {
-                event.preventDefault();
-                window.AppInventor.setWebViewString('loading');
-                setTimeout(() => {
-                    window.location.href = link.href;
-                }, 100);
-            }
-        });
-    });
-</script>
 	
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
