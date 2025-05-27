@@ -141,8 +141,8 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
     if (typeof window.AppInventor !== "undefined" && window.AppInventor.setWebViewString) {
-      // অ্যাপে: WebViewString পাঠানো হবে
-      window.AppInventor.setWebViewString(`${shareData.text} ${shareData.url}`);
+      // অ্যাপে: WebViewString-এ শুধু "share" পাঠানো হবে
+      window.AppInventor.setWebViewString("share");
     } else if (navigator.share) {
       // মোবাইল ব্রাউজারে: system share
       navigator.share(shareData)
@@ -152,7 +152,7 @@ document.addEventListener('DOMContentLoaded', function () {
           fallbackCopy(shareData);
         });
     } else {
-      // ডেস্কটপে: কপি করবে
+      // ডেস্কটপে fallback
       fallbackCopy(shareData);
     }
   }
