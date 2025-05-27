@@ -1,45 +1,60 @@
-// loader.js
+// sylheti-loader.js
 
-// Inject loader HTML into body
 document.addEventListener("DOMContentLoaded", () => {
   const loaderHTML = `
     <style>
-      #page-loader {
+      /* Sylheti Smart Loader - No Conflict */
+      #sylheti-kamil-loader {
         position: fixed;
-        top: 0; left: 0;
-        width: 100vw; height: 100vh;
-        background: white;
-        z-index: 9999;
+        inset: 0;
+        background: #ffffff;
+        z-index: 999999;
         display: flex;
         justify-content: center;
         align-items: center;
-        transition: opacity 0.3s ease;
+        font-family: 'Noto Sans Bengali', sans-serif;
       }
-      .spinner {
-        border: 6px solid #eee;
-        border-top: 6px solid #007bff;
+      .sylheti-dot-box {
+        display: flex;
+        gap: 12px;
+        position: relative;
+      }
+      .sylheti-dot {
+        width: 18px;
+        height: 18px;
         border-radius: 50%;
-        width: 40px;
-        height: 40px;
-        animation: spin 0.8s linear infinite;
+        background: #1877f2;
+        opacity: 0.5;
+        animation: sylheti-bounce 1.2s infinite;
       }
-      @keyframes spin {
-        to { transform: rotate(360deg); }
+      .sylheti-dot:nth-child(1) { animation-delay: 0s; }
+      .sylheti-dot:nth-child(2) { animation-delay: 0.2s; }
+      .sylheti-dot:nth-child(3) { animation-delay: 0.4s; }
+      .sylheti-dot:nth-child(4) { animation-delay: 0.6s; }
+
+      @keyframes sylheti-bounce {
+        0%, 100% { transform: translateY(0); opacity: 0.4; }
+        50% { transform: translateY(-10px); opacity: 1; }
       }
     </style>
-    <div id="page-loader">
-      <div class="spinner"></div>
+
+    <div id="sylheti-kamil-loader">
+      <div class="sylheti-dot-box">
+        <div class="sylheti-dot"></div>
+        <div class="sylheti-dot"></div>
+        <div class="sylheti-dot"></div>
+        <div class="sylheti-dot"></div>
+      </div>
     </div>
   `;
-
   document.body.insertAdjacentHTML("beforeend", loaderHTML);
 });
 
-// Remove loader when page fully loaded
 window.addEventListener("load", () => {
-  const loader = document.getElementById("page-loader");
+  const loader = document.getElementById("sylheti-kamil-loader");
   if (loader) {
+    loader.style.transition = 'opacity 0.4s ease';
     loader.style.opacity = '0';
-    setTimeout(() => loader.remove(), 300); // smooth hide
+    setTimeout(() => loader.remove(), 400);
   }
 });
