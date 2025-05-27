@@ -139,17 +139,18 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
     if (typeof window.AppInventor !== "undefined" && window.AppInventor.setWebViewString) {
-      // অ্যাপসের ভিতরে হলে WebViewString পাঠানো হবে
+      // অ্যাপে হলে WebViewString পাঠানো হবে
       window.AppInventor.setWebViewString(`shareData.text{shareData.url}`);
     } else if (navigator.share) {
-      // ব্রাউজারে হলে সিস্টেম শেয়ার
+      // মোবাইল ব্রাউজারে সিস্টেম শেয়ার
       navigator.share(shareData)
         .then(() => console.log('Shared successfully'))
         .catch((error) => {
-	console.log('Sharing failed, fallback to copy', error);
-          fallbackCopy(shareData);
+          console.log('Sharing failed, fallback to copy', error);	
+           fallbackCopy(shareData);
         });
     } else {
+      // ডেস্কটপে fallback
       fallbackCopy(shareData);
     }
   }
@@ -158,15 +159,16 @@ document.addEventListener('DOMContentLoaded', function () {
     const fullText = `data.text{data.url}`;
     navigator.clipboard.writeText(fullText)
       .then(() => {
-        showToast("লিংক কপি হয়েছে ! এখন বন্ধুদের কাছে পাঠান।");
+        showToast("লিংক কপি হয়েছে! এখন বন্ধুদের পাঠান।");
+        alert("লিংক কপি হয়েছে ✅ এখন বন্ধুদের ইনবক্সে দিন।");
       })
       .catch((err) => {
         console.error('কপি করতে সমস্যা হয়েছে:', err);
         showToast("দুঃখিত, লিংক কপি করা হয়নি।", true);
       });
   }
-</script>	
-
+</script>
+	
 </head>
 <body>
 	<div class="header-container">
