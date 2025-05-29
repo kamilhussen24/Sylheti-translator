@@ -262,7 +262,31 @@ document.addEventListener('click', (e) => {
         sylhetiDropdown.classList.remove('active');
     }
 });
+</script>
 	    
+  <!-- App Function -->
+<script src="/assets/loader.js" defer></script>	
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('a').forEach(function (link) {
+    link.addEventListener('click', function (e) {
+      var href = link.getAttribute('href');
+
+      // যদি href শুরু হয় "http" দিয়ে এবং "kamildex.com" না থাকে, তাহলে বাইরের লিংক
+      if (href && href.startsWith('http') && !href.includes('kamildex.com')) {
+        // চেক করো window.AppInventor বিদ্যমান কিনা
+        if (typeof window.AppInventor !== 'undefined' && window.AppInventor.setWebViewString) {
+          e.preventDefault();
+          window.AppInventor.setWebViewString(href);
+        }
+	 }
+    });
+  });
+});
+</script>
+
+<!-- App Share Function -->
+<script>
   function showToast(message, isError = false) {
     const toast = document.getElementById("notification");
     toast.textContent = message;
@@ -281,7 +305,11 @@ document.addEventListener('click', (e) => {
       url: 'https://play.google.com/store/apps/details?id=co.median.android.jlrnql'
     };
 
-    if (navigator.share) {
+    if (typeof window.AppInventor !== "undefined" && window.AppInventor.setWebViewString) {
+      // অ্যাপে: WebViewString-এ শুধু "share" পাঠানো হবে
+      window.AppInventor.setWebViewString("share");
+    } else if (navigator.share) {
+      // মোবাইল ব্রাউজারে: system share
       navigator.share(shareData)
         .then(() => console.log('Shared successfully'))
         .catch((error) => {
@@ -289,6 +317,7 @@ document.addEventListener('click', (e) => {
           fallbackCopy(shareData);
         });
     } else {
+      // ডেস্কটপে fallback
       fallbackCopy(shareData);
     }
   }
@@ -297,7 +326,7 @@ document.addEventListener('click', (e) => {
     const fullText = `${data.text} ${data.url}`;
     navigator.clipboard.writeText(fullText)
       .then(() => {
-        showToast("লিংক কপি হয়েছে ! এখন বন্ধুদের কাছে পাঠান।");
+        showToast("লিংক কপি হয়েছে! এখন বন্ধুদের কাছে পাঠান।");
       })
       .catch((err) => {
         console.error('কপি করতে সমস্যা হয়েছে:', err);
@@ -305,6 +334,7 @@ document.addEventListener('click', (e) => {
       });
   }
 </script>
+
 	  <!-- Share Notification -->
 <div id="notification" class="notification"></div>
 </body>
