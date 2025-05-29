@@ -1,1 +1,240 @@
 
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Sylheti Translator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali&display=swap" rel="stylesheet">
+    
+    <!-- Theme color for modern browsers -->
+<meta name="theme-color" content="#4361ee">
+
+<!-- Chrome, Firefox OS and Opera -->
+<meta name="theme-color" content="#4361ee">
+
+<!-- Windows Phone -->
+<meta name="msapplication-navbutton-color" content="#4361ee">
+
+<!-- iOS Safari -->
+<meta name="apple-mobile-web-app-status-bar-style" content="#4361ee">
+	<link rel="stylesheet" href="assets/css/styles.css">
+    
+<script type="module">
+  // Toggle menu functionality
+        const menuBtn = document.querySelector('.menu-btn');
+        const dropdownContainer = document.querySelector('.dropdown-container');
+
+        menuBtn.addEventListener('click', () => {
+            menuBtn.classList.toggle('active');
+            dropdownContainer.classList.toggle('active');
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.header-container')) {
+                menuBtn.classList.remove('active');
+                dropdownContainer.classList.remove('active');
+            }
+        });
+  
+</script>
+
+<!-- Share Notification -->
+<div id="notification" class="notification"></div>
+<!-- App Function -->
+<script src="/assets/loader.js" defer></script>	
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('a').forEach(function (link) {
+    link.addEventListener('click', function (e) {
+      var href = link.getAttribute('href');
+
+      // যদি href শুরু হয় "http" দিয়ে এবং "kamildex.com" না থাকে, তাহলে বাইরের লিংক
+      if (href && href.startsWith('http') && !href.includes('kamildex.com')) {
+        // চেক করো window.AppInventor বিদ্যমান কিনা
+        if (typeof window.AppInventor !== 'undefined' && window.AppInventor.setWebViewString) {
+          e.preventDefault();
+          window.AppInventor.setWebViewString(href);
+        }
+	 }
+    });
+  });
+});
+</script>
+
+<!-- App Share Function -->
+<script>
+  function showToast(message, isError = false) {
+    const toast = document.getElementById("notification");
+    toast.textContent = message;
+    toast.style.backgroundColor = isError ? "#dc3545" : "#198754"; // red if error
+    toast.classList.add("show");
+
+    setTimeout(() => {
+      toast.classList.remove("show");
+    }, 3000);
+  }
+
+  function shareContent() {
+    const shareData = {
+      title: 'সিলেটি থেকে বাংলা ট্রান্সলেটর',
+      text: 'দেখে আসুন নতুন সিলেটি ট্রান্সলেটর',
+      url: 'https://play.google.com/store/apps/details?id=co.median.android.jlrnql'
+    };
+
+    if (typeof window.AppInventor !== "undefined" && window.AppInventor.setWebViewString) {
+      // অ্যাপে: WebViewString-এ শুধু "share" পাঠানো হবে
+      window.AppInventor.setWebViewString("share");
+    } else if (navigator.share) {
+      // মোবাইল ব্রাউজারে: system share
+      navigator.share(shareData)
+        .then(() => console.log('Shared successfully'))
+        .catch((error) => {
+          console.log('Sharing failed, fallback to copy', error);
+          fallbackCopy(shareData);
+        });
+    } else {
+      // ডেস্কটপে fallback
+      fallbackCopy(shareData);
+    }
+  }
+
+  function fallbackCopy(data) {
+    const fullText = `${data.text} ${data.url}`;
+    navigator.clipboard.writeText(fullText)
+      .then(() => {
+        showToast("লিংক কপি হয়েছে! এখন বন্ধুদের কাছে পাঠান।");
+      })
+      .catch((err) => {
+        console.error('কপি করতে সমস্যা হয়েছে:', err);
+        showToast("দুঃখিত, লিংক কপি করা হয়নি।", true);
+      });
+  }
+</script>
+</head>
+<body>
+	<div class="header-container">
+        <div class="main-header">
+            <!-- Menu Button -->
+            <button class="menu-btn">
+                <span class="menu-line"></span>
+                <span class="menu-line"></span>
+                <span class="menu-line"></span>
+            </button>
+
+            <!-- Logo -->
+            <a href="/" class="logo">Sylheti<span class="logo-highlight">Words</span></a>
+
+            <!-- Notification -->
+            <button class="share-btn" onclick="shareContent()">
+    <i class="fas fa-share-alt share-icon"></i>
+    <span class="notification-badge">3</span>
+</button>
+
+            <!-- Dropdown Container -->
+            <div class="dropdown-container">
+                <div class="dropdown-menu">
+                    <a href="/" class="menu-item">
+    <i class="fas fa-home menu-icon"></i>
+    Home
+</a>
+
+<a href="/about" class="menu-item">
+    <i class="fas fa-info-circle menu-icon"></i>
+    About
+</a>
+<a href="/privacy-policy.html" class="menu-item">
+    <i class="fas fa-shield-alt menu-icon"></i>
+    Privacy Policy
+</a>
+<a href="/how-to-add" class="menu-item">
+    <i class="fas fa-plus-circle menu-icon"></i>
+    How to add
+</a>
+             </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="app-container">
+        
+        <main class="main-content">
+            
+            <div class="translation-card">
+                <div class="language-tabs">
+                	
+                	<div class="input-container">
+                    <div class="input-header">
+                        
+                    </div>
+
+<div style="font-family: Arial, sans-serif; font-size: 16px; color: #333; line-height: 1.8;">
+
+  <h2 style="margin-bottom: 10px;">
+    <i class="fas fa-envelope" style="margin-right: 8px;"></i> যোগাযোগ করুন
+  </h2>
+
+  <div style="margin-bottom: 200px;">
+
+    <p>
+      যেকোনো প্রয়োজনে বা তথ্যের জন্য আমাদের সাথে যোগাযোগ করতে পারেন। আপনার বার্তা আমাদের জন্য গুরুত্বপূর্ণ এবং আমরা যথাসময়ে উত্তর দেওয়ার চেষ্টা করব।
+    </p>
+
+    <p>
+      <strong>ইমেইল:</strong> 
+      <a href="mailto:kamil.chat24@icloud.com" style="text-decoration: none; color: #0066cc;">
+        <i class="fas fa-envelope" style="margin-right: 6px;"></i>KAMIL.CHAT24@ICLOUD.COM
+      </a>
+    </p>
+
+    <!-- সোশ্যাল মিডিয়া সেকশন শুরু -->
+    <div style="height: 30px;"></div>
+
+    <h4 style="margin-bottom: 10px;">
+      <i class="fas fa-share-alt" style="margin-right: 8px;"></i> সোশ্যাল মিডিয়া
+    </h4>
+
+    <ul style="list-style: none; padding-left: 0;">
+  <li style="margin-bottom: 8px;">
+    <a href="https://www.facebook.com/kamilhussen24/" target="_blank" style="text-decoration: none; color: #3b5998;">
+      <i class="fab fa-facebook" style="margin-right: 8px;"></i>Facebook
+    </a>
+  </li>
+  <li style="margin-bottom: 8px;">
+    <a href="https://x.com/kamilhussen24" target="_blank" style="text-decoration: none; color: #1da1f2;">
+      <i class="fab fa-twitter" style="margin-right: 8px;"></i>Twitter
+    </a>
+  </li>
+  <li>
+    <a href="https://t.me/kamilhussen24" target="_blank" style="text-decoration: none; color: #0088cc;">
+      <i class="fab fa-telegram" style="margin-right: 8px;"></i>Telegram
+    </a>
+  </li>
+</ul>
+
+  </div>
+</div>
+</div>
+
+</div>
+    </div>
+        </main>
+
+        <footer class="app-footer">
+            <p>ভুল হলে নতুন শব্দ বাক্য যুক্ত করুন এই ট্রান্সলেটরটি সময়ের সাথে সাথে আপনার সহায়তায় আরও উন্নত হবে ।</p>
+            <div class="social-links">
+                <a href="https://facebook.com/kamilhussen24" class="social-link" aria-label="ফেসবুক"><i class="fab fa-facebook"></i></a>
+                <a href="https://x.com/kamilhussen24?s=09" class="social-link" aria-label="টুইটার"><i class="fab fa-twitter"></i></a>
+                <a href="https://t.me/kamildex" class="social-link" aria-label="টেলিগ্রাম"><i class="fab fa-telegram"></i></a>
+            </div>
+            <footer class="custom-footer">
+    <p class="custom-footer-credit">Designed by<strong><a href="https://kamilhussen24.github.io/" target="_blank">Kamil Dex</a></strong>&copy;2025</p>
+</footer>
+    </div>
+</body>
+</html>
+
