@@ -32,7 +32,7 @@
       // অ্যাপের ভিতর থেকে: ইমেইল কপি করে নোটিফিকেশন দেখাও
       navigator.clipboard.writeText(email)
         .then(() => {
-          showToast(" ইমেইল কপি হয়েছে: " + email);
+          showToast("ইমেইল কপি হয়েছে:" + email);
         })
         .catch((err) => {
           console.error("Clipboard Error:", err);
