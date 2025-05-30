@@ -23,22 +23,23 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#4361ee">
 	<link rel="stylesheet" href="assets/css/styles.css">
 	
-    <script>
+    script>
   function handleEmailClick() {
-    let email = "kamil.chat24@icloud.com";
-
-    // Kodular WebView / App থেকে এসেছে কি না চেক
-    let isAppView = navigator.userAgent.includes("MyAppWebView");
+    const email = "kamil.chat24@icloud.com";
+    const isAppView = navigator.userAgent.includes("MyAppWebView");
 
     if (isAppView) {
-      // অ্যাপ থেকে: শুধু কপি করো
-      navigator.clipboard.writeText(email).then(function () {
-        alert(" ইমেইল কপি হয়ে গেছে: " + email);
-      }).catch(function (err) {
-        alert(" কপি করা যায়নি: " + err);
-      });
+      // অ্যাপের ভিতর থেকে: ইমেইল কপি করে নোটিফিকেশন দেখাও
+      navigator.clipboard.writeText(email)
+        .then(() => {
+          showToast(" ইমেইল কপি হয়েছে: " + email);
+        })
+        .catch((err) => {
+          console.error("Clipboard Error:", err);
+          showToast("ইমেইল কপি করতে সমস্যা হয়েছে!", true);
+        });
     } else {
-      // ব্রাউজার থেকে: মেইল লিংক ওপেন করো
+      // ব্রাউজারে: মেইল লিংক ওপেন করো
       window.location.href = "mailto:" + email;
     }
   }
