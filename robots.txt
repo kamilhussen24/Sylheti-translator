@@ -1,3 +1,4 @@
 User-agent: *
-Disallow: 
-Sitemap: https://kamildex.com/sitemap.xml
+Disallow:
+Allow: /
+Sitemap: https://sylheti.kamildex.com/sitemap.xml
