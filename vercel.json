@@ -5,6 +5,7 @@
     { "source": "/sylheti-nagri-to-bangla", "destination": "/sylheti-nagri-to-bangla.html" },
     { "source": "/bangla-to-sylheti-nagri", "destination": "/bangla-to-sylheti-nagri.html" },
     { "source": "/how-to-add", "destination": "/how-to-add.html" },
-    { "source": "/privacy-policy", "destination": "/privacy-policy.html" }
+    { "source": "/privacy-policy", "destination": "/privacy-policy.html" },
+    { "source": "/blog/:slug", "destination": "/blog/:slug.html" }
   ]
 }
