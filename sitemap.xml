@@ -1,44 +1,50 @@
 <?xml version="1.0" ?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   <url>
-    <loc>https://sylheti.kamildex.com/bangla-to-sylheti-nagri</loc>
-    <lastmod>2025-06-01T16:08:04+06:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://sylheti.kamildex.com/privacy-policy</loc>
-    <lastmod>2025-06-01T16:04:17+06:00</lastmod>
+    <lastmod>2025-06-11T11:13:20+06:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sylheti.kamildex.com/contact</loc>
-    <lastmod>2025-06-01T16:08:04+06:00</lastmod>
+    <loc>https://sylheti.kamildex.com/bangla-to-sylheti-nagri</loc>
+    <lastmod>2025-06-11T11:13:20+06:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sylheti.kamildex.com/how-to-add</loc>
-    <lastmod>2025-06-01T16:08:04+06:00</lastmod>
+    <loc>https://sylheti.kamildex.com/sylheti-nagri-to-bangla</loc>
+    <lastmod>2025-06-11T11:13:20+06:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://sylheti.kamildex.com/about</loc>
-    <lastmod>2025-06-01T16:08:04+06:00</lastmod>
+    <lastmod>2025-06-11T11:13:20+06:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://sylheti.kamildex.com/</loc>
-    <lastmod>2025-06-01T16:08:04+06:00</lastmod>
+    <lastmod>2025-06-12T10:03:22+06:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://sylheti.kamildex.com/sylheti-nagri-to-bangla</loc>
-    <lastmod>2025-06-01T16:04:17+06:00</lastmod>
+    <loc>https://sylheti.kamildex.com/contact</loc>
+    <lastmod>2025-06-11T11:13:20+06:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://sylheti.kamildex.com/how-to-add</loc>
+    <lastmod>2025-06-11T11:13:20+06:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://sylheti.kamildex.com/blog/sylheti-vasha-funny-word</loc>
+    <lastmod>2025-06-12T10:03:22+06:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
