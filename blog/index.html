@@ -406,27 +406,26 @@ async function fetchPostDate(filename) {
 }
 
 async function loadPosts() {
-    // লোডিং এনিমেশন দেখাও
     document.getElementById('loading-indicator').style.display = 'block';
 
     try {
         const response = await fetch('/api/posts');
         const files = await response.json();
 
-        allPosts = files.filter(file => file.name.endsWith('.html'));
+        allPosts = files.filter(file =>
+            file.name.endsWith('.html') && file.name.toLowerCase() !== 'index.html'
+        );
+
         visiblePosts = 0;
         document.getElementById('posts-container').innerHTML = '';
         
         await loadMorePosts();
 
-        // লোড শেষ হলে এনিমেশন গায়েব করো
         document.getElementById('loading-indicator').style.display = 'none';
 
     } catch (error) {
         console.error('Error loading posts:', error);
         alert('সমস্যা হয়েছে! একটু পরে আবার চেষ্টা করুন।');
-
-        // সমস্যা হলেও লোডার গায়েব করো
         document.getElementById('loading-indicator').style.display = 'none';
     }
 }
@@ -446,13 +445,15 @@ async function loadMorePosts() {
         const excerpt = doc.querySelector('p')?.innerText.slice(0, 130) + '...' || 'কোনো বর্ণনা নেই';
         const postDate = await fetchPostDate(file.name);
 
+        const fileNameWithoutExt = file.name.replace('.html', '');
+
         const postItem = document.createElement('li');
         postItem.className = 'post-item';
         postItem.innerHTML = `
-            <a href="blog/${file.name}" style="text-decoration:none;color:inherit;">
+            <a href="blog/${fileNameWithoutExt}" style="text-decoration:none;color:inherit;">
                 <div class="post-meta">
-    <span><i class="fas fa-sync-alt"></i> সবশেষ আপডেট : ${postDate}</span>
-</div>
+                    <span><i class="fas fa-sync-alt"></i> সবশেষ আপডেট : ${postDate}</span>
+                </div>
                 <h2 class="post-title">${title}</h2>
                 <p class="post-excerpt">${excerpt}</p>
             </a>
