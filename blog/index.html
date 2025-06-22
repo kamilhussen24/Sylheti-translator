@@ -247,12 +247,6 @@
         	  <div class="translation-card">
         	  		<div class="input-container">
         	  			   </div>
-    <!-- লোডিং এনিমেশন ও টেক্সট -->
-<div id="loading-indicator" style="text-align: center; padding: 2rem;">
-  <div class="spinner" style="margin: auto; width: 50px; height: 50px; border: 6px solid #f3f3f3; border-top: 6px solid #555; border-radius: 50%; animation: spin 1s linear infinite;"></div>
-  <p style="margin-top: 1rem;"> পোস্ট লোড হচ্ছে...</p>
-</div>
-
 <style>
 @keyframes spin {
   0% { transform: rotate(0deg); }
@@ -261,6 +255,12 @@
 </style>
    <div class="container">
         <ul class="post-list" id="posts-container"></ul>
+        
+        <!-- লোডিং এনিমেশন ও টেক্সট -->
+<div id="loading-indicator" style="text-align: center; padding: 2rem;">
+  <div class="spinner" style="margin: auto; width: 50px; height: 50px; border: 6px solid #f3f3f3; border-top: 6px solid #555; border-radius: 50%; animation: spin 1s linear infinite;"></div>
+  <p style="margin-top: 1rem;"> পোস্ট লোড হচ্ছে...</p>
+</div>
         <button class="load-more-btn" onclick="loadMorePosts()" id="loadMore">আরো পোস্ট দেখুন</button>
     </div>
     
