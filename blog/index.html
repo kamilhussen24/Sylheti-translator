@@ -293,8 +293,17 @@ async function loadPosts() {
         const response = await fetch('/api/posts');
         const files = await response.json();
 
+        // 🔸 এখানে ফাইল বাদ লিস্ট
+        const excludedFiles = [
+            'index.html',
+            'terms.html',
+            'draft.html',
+            'do-not-show.html'
+        ];
+
         allPosts = files.filter(file =>
-            file.name.endsWith('.html') && file.name.toLowerCase() !== 'index.html'
+            file.name.endsWith('.html') &&
+            !excludedFiles.includes(file.name.toLowerCase())
         );
 
         visiblePosts = 0;
