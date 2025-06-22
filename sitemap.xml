@@ -43,8 +43,20 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://sylheti.kamildex.com/blog/</loc>
+    <lastmod>2025-06-22T22:07:35+06:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://sylheti.kamildex.com/blog/barlekha-moulvibazar-tour-spot</loc>
+    <lastmod>2025-06-22T21:46:36+06:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://sylheti.kamildex.com/blog/sylheti-vasha-popular-word</loc>
-    <lastmod>2025-06-20T22:44:10+06:00</lastmod>
+    <lastmod>2025-06-22T20:59:09+06:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
