@@ -34,70 +34,90 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#4361ee">
 <link rel="stylesheet" href="/assets/css/styles.css">
 <style>
-
     .audio-main {
-      text-align: center;
-    }
+  text-align: center;
+}
 
-    .player-wrapper {
-      max-width: 500px;
-      margin: auto;
-      background: #ffffff;
-      border-radius: 1rem;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      padding: 2rem;
-    }
+.player-wrapper {
+  max-width: 500px;
+  margin: auto;
+  background: #ffffff;
+  border-radius: 1rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  padding: 2rem;
+}
 
-    h2 {
-      font-size: 1.75rem;
-      margin-bottom: 1rem;
-      color: #4361ee;
-    }
+h2 {
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+  color: #4361ee;
+}
 
-    .tabs {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 1.5rem;
-    }
+.tabs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
 
-    .tab {
-      padding: 0.5rem 1.2rem;
-      margin: 0 0.5rem;
-      border: 2px solid #4361ee;
-      border-radius: 9999px;
-      cursor: pointer;
-      font-weight: 600;
-      color: #4361ee;
-      transition: all 0.2s ease-in-out;
-    }
+.tab {
+  padding: 0.5rem 1.2rem;
+  margin: 0 0.5rem;
+  border: 2px solid #4361ee;
+  border-radius: 9999px;
+  cursor: pointer;
+  font-weight: 600;
+  color: #4361ee;
+  transition: all 0.2s ease-in-out;
+  user-select: none;
+  outline: none; /* outline will be handled on focus */
+}
 
-    .tab.active {
-      background-color: #4361ee;
-      color: white;
-    }
+.tab:hover {
+  background-color: #4361ee22; /* হালকা ব্লু হোভার ইফেক্ট */
+}
 
-    audio {
-      width: 100%;
-      outline: none;
-    }
+.tab:focus {
+  outline: 2px solid #4361ee;
+  outline-offset: 2px;
+}
 
-    .audio-box {
-      display: none;
-    }
+.tab.active {
+  background-color: #4361ee;
+  color: white;
+}
 
-    .audio-box.active {
-      display: block;
-    }
+audio {
+  width: 100%;
+  outline: none;
+}
 
-    .audio-label {
-      font-size: 1rem;
-      margin-bottom: 0.5rem;
-    }
+.audio-box {
+  display: none;
+}
 
-    .audio-label i {
-      color: #4361ee;
-      margin-right: 6px;
-    }
+.audio-box.active {
+  display: block;
+}
+
+.audio-label {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.audio-label i {
+  color: #4361ee;
+  margin-right: 6px;
+}
+
+/* Optional responsive tweak */
+@media (max-width: 400px) {
+  .tab {
+    padding: 0.5rem 0.8rem;
+    margin: 0 0.3rem;
+    font-size: 0.9rem;
+  }
+}
   </style>
 </head>
 <body>
@@ -170,7 +190,7 @@
     <div id="audio-bn" class="audio-box active">
       <div class="audio-label"><i class="fas fa-volume-up"></i>বাংলা ভার্সন</div>
       <audio id="audio_bn" controls>
-        <source src="/audio/sylheti-history-bn.mp3" type="audio/mpeg">
+        <source src="/blog/audio/sylheti-history-bn.mp3" type="audio/mpeg">
         আপনার ব্রাউজার অডিও প্লেয়ারটি সাপোর্ট করে না।
       </audio>
     </div>
@@ -178,7 +198,7 @@
     <div id="audio-en" class="audio-box">
       <div class="audio-label"><i class="fas fa-volume-up"></i>English Version</div>
       <audio id="audio_en" controls>
-        <source src="/audio/sylheti-history-en.mp3" type="audio/mpeg">
+        <source src="/blog/audio/sylheti-history-en.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
       </audio>
     </div>
