@@ -158,7 +158,7 @@ audio {
         	  <div class="translation-card">
         	  		<div class="input-container">
                      <div class="input-header">
-        	  			   
+        	  			   </div>
         	  			   <h2 style="font-size: 24px; margin-bottom: 16px; margin-top: 5px; text-align: center;">
   সিলেটির ইতিহাস জনপ্রিয়তা ও পরিচিতি পডকাস্ট
 </h2>
@@ -205,54 +205,7 @@ audio {
 </ul>
 <h2>উপসংহার</h2>
 <p>সিলেট ও সিলেটি ভাষা কেবল একটি অঞ্চল বা উপভাষার নাম নয়, এটি একটি আত্মপরিচয়। খাবার, সংস্কৃতি, ইতিহাস এবং প্রবাসে ছড়িয়ে থাকা মানুষের ভালোবাসায় এই অঞ্চল আজ আন্তর্জাতিক পরিমণ্ডলে একটি গর্বিত নাম। আপনি যদি ‘সিলেটি’ লিখে গুগলে খোঁজেন, তাহলে এই পেজেই পাবেন সিলেটের সম্পূর্ণ পরিচয়।</p>
-<p style="margin-top: 30px;">
-    </div>
-    </div>
-<div class="audio-main">
-<div class="player-wrapper">
-    <h2><i class="fas fa-headphones-alt"></i> সিলেটি পরিচিতি শুনুন</h2>
 
-    <div class="tabs">
-      <div class="tab active" onclick="switchAudio('bn')"><i class="fas fa-language"></i> বাংলা</div>
-      <div class="tab" onclick="switchAudio('en')"><i class="fas fa-globe"></i> English</div>
-    </div>
-
-    <div id="audio-bn" class="audio-box active">
-      <div class="audio-label"><i class="fas fa-volume-up"></i>বাংলা ভার্সন</div>
-      <audio id="audio_bn" controls>
-        <source src="/blog/audio/sylheti-history-bn.mp3" type="audio/mpeg">
-        আপনার ব্রাউজার অডিও প্লেয়ারটি সাপোর্ট করে না।
-      </audio>
-    </div>
-
-    <div id="audio-en" class="audio-box">
-      <div class="audio-label"><i class="fas fa-volume-up"></i>English Version</div>
-      <audio id="audio_en" controls>
-        <source src="/blog/audio/sylheti-history-en.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-      </audio>
-    </div>
-  </div>
-</div>
-
-  <script>
-    function switchAudio(lang) {
-      const tabs = document.querySelectorAll('.tab');
-      const boxes = document.querySelectorAll('.audio-box');
-
-      // Pause and reset all audio players
-      document.querySelectorAll('audio').forEach(audio => {
-        audio.pause();
-        audio.currentTime = 0;
-      });
-
-      tabs.forEach(tab => tab.classList.remove('active'));
-      boxes.forEach(box => box.classList.remove('active'));
-
-      document.querySelector(`.tab[onclick*="${lang}"]`).classList.add('active');
-      document.getElementById(`audio-${lang}`).classList.add('active');
-    }
-  </script>
 	
 
 <p style="margin-top: 30px;">
