@@ -263,37 +263,42 @@
 </div>
         <button class="load-more-btn" onclick="loadMorePosts()" id="loadMore">আরো পোস্ট দেখুন</button>
     </div>
-    
+
 <script>
 let visiblePosts = 0;
 let allPosts = [];
 
+// 🔸 আপডেটেড fetchPostDate ফাংশন
 async function fetchPostDate(filename) {
     try {
         const response = await fetch(`/api/commits?filename=${filename}`);
         const commits = await response.json();
         if (commits.length > 0) {
-            const date = new Date(commits[0].commit.committer.date);
-            return date.toLocaleDateString('bn-BD', {
+            const isoDate = commits[0].commit.committer.date;
+            const formattedDate = new Date(isoDate).toLocaleDateString('bn-BD', {
                 year: 'numeric',
                 month: 'long',
                 day: 'numeric'
             });
+            return {
+                formatted: formattedDate,
+                raw: isoDate
+            };
         }
-        return 'তারিখ পাওয়া যায়নি';
+        return { formatted: 'তারিখ পাওয়া যায়নি', raw: null };
     } catch (error) {
-        return 'তারিখ পাওয়া যায়নি';
+        return { formatted: 'তারিখ পাওয়া যায়নি', raw: null };
     }
 }
 
 async function loadPosts() {
-    document.getElementById('loading-indicator').style.display = 'block';
+    document.getElementById('loading-indicator')?.style?.display = 'block';
 
     try {
         const response = await fetch('/api/posts');
         const files = await response.json();
 
-        // 🔸 এখানে ফাইল বাদ লিস্ট
+        // 🔸 বাদ দেওয়া ফাইল
         const excludedFiles = [
             'index.html',
             'terms.html',
@@ -301,22 +306,38 @@ async function loadPosts() {
             'do-not-show.html'
         ];
 
-        allPosts = files.filter(file =>
+        const filteredFiles = files.filter(file =>
             file.name.endsWith('.html') &&
             !excludedFiles.includes(file.name.toLowerCase())
         );
 
+        // 🔥 প্রতিটি ফাইলে তারিখ অ্যাড করে নাও
+        const filesWithDates = await Promise.all(
+            filteredFiles.map(async (file) => {
+                const dateInfo = await fetchPostDate(file.name);
+                return {
+                    ...file,
+                    postDate: dateInfo.formatted,
+                    dateObject: dateInfo.raw ? new Date(dateInfo.raw) : new Date(0)
+                };
+            })
+        );
+
+        // 🔥 নতুন থেকে পুরাতন সাজাও
+        filesWithDates.sort((a, b) => b.dateObject - a.dateObject);
+
+        allPosts = filesWithDates;
         visiblePosts = 0;
         document.getElementById('posts-container').innerHTML = '';
-        
+
         await loadMorePosts();
 
-        document.getElementById('loading-indicator').style.display = 'none';
+        document.getElementById('loading-indicator')?.style?.display = 'none';
 
     } catch (error) {
         console.error('Error loading posts:', error);
         alert('সমস্যা হয়েছে! একটু পরে আবার চেষ্টা করুন।');
-        document.getElementById('loading-indicator').style.display = 'none';
+        document.getElementById('loading-indicator')?.style?.display = 'none';
     }
 }
 
@@ -333,7 +354,6 @@ async function loadMorePosts() {
 
         const title = doc.querySelector('title')?.innerText || 'নামবিহীন পোস্ট';
         const excerpt = doc.querySelector('p')?.innerText.slice(0, 130) + '...' || 'কোনো বর্ণনা নেই';
-        const postDate = await fetchPostDate(file.name);
 
         const fileNameWithoutExt = file.name.replace('.html', '');
 
@@ -342,7 +362,7 @@ async function loadMorePosts() {
         postItem.innerHTML = `
             <a href="/blog/${fileNameWithoutExt}" style="text-decoration:none;color:inherit;">
                 <div class="post-meta">
-                    <span><i class="fas fa-sync-alt"></i> সবশেষ আপডেট : ${postDate}</span>
+                    <span><i class="fas fa-sync-alt"></i> সবশেষ আপডেট : ${file.postDate}</span>
                 </div>
                 <h2 class="post-title">${title}</h2>
                 <p class="post-excerpt">${excerpt}</p>
@@ -352,13 +372,15 @@ async function loadMorePosts() {
         postsContainer.appendChild(postItem);
     }
 
-    visiblePosts += 4;
+    visiblePosts += 5;
     updateLoadMoreButton();
 }
 
 function updateLoadMoreButton() {
     const loadMoreButton = document.getElementById('loadMore');
-    loadMoreButton.style.display = visiblePosts >= allPosts.length ? 'none' : 'block';
+    if (loadMoreButton) {
+        loadMoreButton.style.display = visiblePosts >= allPosts.length ? 'none' : 'block';
+    }
 }
 
 window.onload = loadPosts;
