@@ -54,8 +54,8 @@
     margin-bottom: 1rem;
     padding: 1.5rem;
     border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* 🔥 গাঢ় ও স্পষ্ট ছায়া */
-    transition: all 0.2s ease;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12); /* গাঢ় ও গভীর ছায়া */
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
     cursor: pointer;
     border-left: 3px solid transparent;
     display: flex;
@@ -64,8 +64,8 @@
 }
 
 .post-item:hover {
-    transform: translateY(-3px); /* একটু বেশি ওঠানো */
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* 🔥 হোভার ছায়া আরও গাঢ় */
+    transform: translateY(-4px); /* হালকা উঠে যাবে */
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2), 0 0 6px var(--accent-color); /* ডিপ + গ্লো ইফেক্ট */
     border-left-color: var(--accent-color);
 }
 
