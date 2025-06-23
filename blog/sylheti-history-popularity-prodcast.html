@@ -99,15 +99,12 @@ audio {
 
 .audio-label {
   display: flex;
-  align-items: center; /* লেখার সাথে আইকন সোজা লাইনে */
-  gap: 0.5rem; /* লেখার সাথে আইকনের মাঝে সুন্দর ফাঁকা */
+  justify-content: center; /* ⬅️ সবকিছু হরাইজন্টালি মাঝখানে */
+  align-items: center; /* ⬅️ আইকন আর টেক্সট এক লাইনে মাঝখানে */
+  gap: 0.5rem; /* আইকন আর লেখার মাঝে ফাঁকা */
   font-size: 1.1rem;
-  margin-bottom: 0.5rem;
-}
-
-.audio-label i {
-  color: var(--primary, #007bff); /* চাইলে কালার নিজের মতো করে দিস */
-  font-size: 1.2rem;
+  text-align: center;
+  margin-bottom: 1rem;
 }
 
 .player-wrapper i,
