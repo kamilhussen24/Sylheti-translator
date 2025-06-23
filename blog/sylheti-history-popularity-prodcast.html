@@ -98,9 +98,16 @@ audio {
 }
 
 .audio-label {
-  font-size: 1rem;
+  display: flex;
+  align-items: center; /* লেখার সাথে আইকন সোজা লাইনে */
+  gap: 0.5rem; /* লেখার সাথে আইকনের মাঝে সুন্দর ফাঁকা */
+  font-size: 1.1rem;
   margin-bottom: 0.5rem;
-  font-weight: 600;
+}
+
+.audio-label i {
+  color: var(--primary, #007bff); /* চাইলে কালার নিজের মতো করে দিস */
+  font-size: 1.2rem;
 }
 
 .player-wrapper i,
