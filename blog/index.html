@@ -300,13 +300,13 @@ async function loadPosts() {
             'do-not-show.html'
         ];
 
-        // 🔥 শুধু .html আর বাদ ফাইল বাদ দিচ্ছি
+        //  শুধু .html
         let filteredFiles = files.filter(file =>
             file.name.endsWith('.html') &&
             !excludedFiles.includes(file.name.toLowerCase())
         );
 
-        // 🔥 প্রতিটি ফাইলের সাথে তারিখ আনছি (sorting-এর জন্য raw Date লাগবে)
+        // প্রতিটি ফাইলের সাথে তারিখ (sorting-এর জন্য raw Date লাগবে)
         const filesWithDates = await Promise.all(
             filteredFiles.map(async (file) => {
                 try {
@@ -320,7 +320,7 @@ async function loadPosts() {
             })
         );
 
-        // 🔥 নতুন পোস্ট আগে, পুরাতন পরে
+        //  নতুন পোস্ট আগে, পুরাতন পরে
         filesWithDates.sort((a, b) => new Date(b.rawDate) - new Date(a.rawDate));
 
         allPosts = filesWithDates;
@@ -383,7 +383,7 @@ function updateLoadMoreButton() {
 window.onload = loadPosts;
 </script>
 
-    
+
 <p style="margin-top: 30px;">
 </div>
 </div>
