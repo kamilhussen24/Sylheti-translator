@@ -135,24 +135,24 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const shareText = 'দেখে আসুন নতুন সিলেটি ট্রান্সলেটর https://play.google.com/store/apps/details?id=co.median.android.jlrnql';
 
-    if (typeof window.AppInventor !== "undefined" && window.AppInventor.setWebViewString) {
-      // App এর ভেতরে — Android share dialog খুলবে
-      window.AppInventor.setWebViewString("share");
+    if (typeof Android !== "undefined") {
+      // App এর ভেতরে — direct call
+      Android.share();
 
     } else if (navigator.share) {
-      // মোবাইল ব্রাউজারে — system share
+      // Mobile browser
       navigator.share({ text: shareText })
         .catch(() => copyToClipboard(shareText));
 
     } else {
-      // Desktop fallback — clipboard copy
+      // Desktop
       copyToClipboard(shareText);
     }
   }
 
   function copyToClipboard(text) {
     navigator.clipboard.writeText(text)
-      .then(() => showToast("লিংক কপি হয়েছে! এখন বন্ধুদের কাছে পাঠান।"))
+      .then(() => showToast("লিংক কপি হয়েছে!"))
       .catch(() => showToast("শেয়ার করা সম্ভব হয়নি।", true));
   }
 </script>	
