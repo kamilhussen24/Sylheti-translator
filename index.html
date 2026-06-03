@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', function () {
       var href = link.getAttribute('href');
 
       // যদি href শুরু হয় "http" দিয়ে এবং "kamildex.com" না থাকে, তাহলে বাইরের লিংক
-      if (href && href.startsWith('http') && !href.includes('sylheti.kamildex.com')) {
+      if (href && href.startsWith('http') && !href.includes('sylheti.kamildex.com') && !href.includes('play.google.com')) {
         // চেক করো window.AppInventor বিদ্যমান কিনা
         if (typeof window.AppInventor !== 'undefined' && window.AppInventor.setWebViewString) {
           e.preventDefault();
