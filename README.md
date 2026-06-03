@@ -26,7 +26,9 @@ Instead, this project takes a community-first approach:
 
 **[https://sylheti.kamildex.com](https://sylheti.kamildex.com)**
 
-Also available as an **Android app** on Google Play.
+Also available as an **Android app** on Google Play:
+
+[![Get it on Google Play](https://img.shields.io/badge/Google%20Play-Download-4361ee?style=flat-square&logo=google-play)](https://play.google.com/store/apps/details?id=co.median.android.jlrnql)
 
 ---
 
@@ -210,9 +212,9 @@ This project is open source under the **MIT License** — see [LICENSE](LICENSE)
 
 ## Contact
 
-Developed by **[Kamil Hussen](https://kamilhussen24.github.io/)**
+Developed by **Kamil Hussen**
 
 - Email: kamil.chat24@icloud.com
-- Facebook: [facebook.com/kamilhussen24](https://facebook.com/kamilhussen24)
+- Facebook: [kamilhussen24](https://facebook.com/kamilhussen24)
 - Twitter/X: [@kamilhussen24](https://x.com/kamilhussen24)
 - Telegram: [t.me/kamilhussen24](https://t.me/kamilhussen24)
