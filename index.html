@@ -125,49 +125,35 @@ document.addEventListener('DOMContentLoaded', function () {
   function showToast(message, isError = false) {
     const toast = document.getElementById("notification");
     toast.textContent = message;
-    toast.style.backgroundColor = isError ? "#dc3545" : "#198754"; // red if error
+    toast.style.backgroundColor = isError ? "#dc3545" : "#198754";
     toast.classList.add("show");
-
-    setTimeout(() => {
-      toast.classList.remove("show");
-    }, 3000);
+    setTimeout(() => toast.classList.remove("show"), 3000);
   }
 
   function shareContent(event) {
     if (event) { event.stopPropagation(); event.preventDefault(); }
-    const shareData = {
-      title: 'সিলেটি থেকে বাংলা ট্রান্সলেটর',
-      text: 'দেখে আসুন নতুন সিলেটি ট্রান্সলেটর',
-      url: 'https://play.google.com/store/apps/details?id=co.median.android.jlrnql'
-    };
+
+    const shareText = 'দেখে আসুন নতুন সিলেটি ট্রান্সলেটর https://play.google.com/store/apps/details?id=co.median.android.jlrnql';
 
     if (typeof window.AppInventor !== "undefined" && window.AppInventor.setWebViewString) {
-      // অ্যাপে: WebViewString-এ শুধু "share" পাঠানো হবে
+      // App এর ভেতরে — Android share dialog খুলবে
       window.AppInventor.setWebViewString("share");
+
     } else if (navigator.share) {
-      // মোবাইল ব্রাউজারে: system share
-      navigator.share(shareData)
-        .then(() => console.log('Shared successfully'))
-        .catch((error) => {
-          console.log('Sharing failed, fallback to copy', error);
-          fallbackCopy(shareData);
-        });
+      // মোবাইল ব্রাউজারে — system share
+      navigator.share({ text: shareText })
+        .catch(() => copyToClipboard(shareText));
+
     } else {
-      // ডেস্কটপে fallback
-      fallbackCopy(shareData);
+      // Desktop fallback — clipboard copy
+      copyToClipboard(shareText);
     }
   }
 
-  function fallbackCopy(data) {
-    const fullText = `${data.text} ${data.url}`;
-    navigator.clipboard.writeText(fullText)
-      .then(() => {
-        showToast("লিংক কপি হয়েছে! এখন বন্ধুদের কাছে পাঠান।");
-      })
-      .catch((err) => {
-        console.error('কপি করতে সমস্যা হয়েছে:', err);
-        showToast("দুঃখিত, লিংক কপি করা হয়নি।", true);
-      });
+  function copyToClipboard(text) {
+    navigator.clipboard.writeText(text)
+      .then(() => showToast("লিংক কপি হয়েছে! এখন বন্ধুদের কাছে পাঠান।"))
+      .catch(() => showToast("শেয়ার করা সম্ভব হয়নি।", true));
   }
 </script>	
 	
