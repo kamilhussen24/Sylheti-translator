@@ -413,7 +413,7 @@ footer {
 
 .custom-footer-credit {
     margin: 0;
-    font-family: 'Arial', 
+    font-family: 'Arial', sans-serif;
 }
 
 .custom-footer-credit a {

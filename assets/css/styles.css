@@ -490,6 +490,10 @@ textarea:focus {
     display: none;
 }
 
+.correction-box.show {
+    display: block;
+}
+
 .correction-box textarea {
     min-height: 100px;
     margin-bottom: 10px;
@@ -814,7 +818,7 @@ textarea:focus {
 
 .custom-footer-credit {
     margin: 0;
-    font-family: 'Arial', 
+    font-family: 'Arial', sans-serif;
 }
 
 .custom-footer-credit a {

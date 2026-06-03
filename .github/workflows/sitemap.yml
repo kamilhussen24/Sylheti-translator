@@ -2,8 +2,8 @@ name: Auto Sitemap Update
 
 on:
   schedule:
-    - cron: "0 0 * * 5"  # প্রতি শুক্রবার রাত ১২টায় চলবে
-  workflow_dispatch:     # ম্যানুয়াল রান অপশন
+    - cron: "0 0 * * 5"  # Runs every Friday at midnight UTC
+  workflow_dispatch:     # Allows manual trigger
 
 permissions:
   contents: write
@@ -11,7 +11,7 @@ permissions:
 jobs:
   update-sitemap:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -31,15 +31,12 @@ jobs:
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
-          git config --global pull.rebase false  # ম্যানুয়াল মার্জ স্ট্র্যাটেজি
-          
-          # স্টেজিং এবং কমিট
+          git config --global pull.rebase false
+
           git add sitemap.xml
-          git commit -m "🔄 Auto-updated sitemap skip it" || echo "No changes"
-          
-          # রিমোটের সাথে সিঙ্ক্রোনাইজ
+          git commit -m "chore: auto-update sitemap" || echo "No changes to commit"
+
           git fetch origin main
           git pull origin main
-          
-          # জোরপূর্বক পুশ (সতর্কতার সাথে)
+
           git push origin main
