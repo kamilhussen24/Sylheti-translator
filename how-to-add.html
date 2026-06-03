@@ -60,15 +60,12 @@ document.addEventListener('DOMContentLoaded', function () {
   document.querySelectorAll('a').forEach(function (link) {
     link.addEventListener('click', function (e) {
       var href = link.getAttribute('href');
-
-      // যদি href শুরু হয় "http" দিয়ে এবং "kamildex.com" না থাকে, তাহলে বাইরের লিংক
-      if (href && href.startsWith('http') && !href.includes('sylheti.kamildex.com')) {
-        // চেক করো window.AppInventor বিদ্যমান কিনা
-        if (typeof window.AppInventor !== 'undefined' && window.AppInventor.setWebViewString) {
+      if (href && href.startsWith('http') && !href.includes('sylheti.kamildex.com') && !href.includes('play.google.com')) {
+        if (typeof Android !== 'undefined') {
           e.preventDefault();
-          window.AppInventor.setWebViewString(href);
+          Android.openUrl(href);
         }
-	 }
+      }
     });
   });
 });
@@ -79,48 +76,28 @@ document.addEventListener('DOMContentLoaded', function () {
   function showToast(message, isError = false) {
     const toast = document.getElementById("notification");
     toast.textContent = message;
-    toast.style.backgroundColor = isError ? "#dc3545" : "#198754"; // red if error
+    toast.style.backgroundColor = isError ? "#dc3545" : "#198754";
     toast.classList.add("show");
-
-    setTimeout(() => {
-      toast.classList.remove("show");
-    }, 3000);
+    setTimeout(() => toast.classList.remove("show"), 3000);
   }
 
-  function shareContent() {
-    const shareData = {
-      title: 'সিলেটি থেকে বাংলা ট্রান্সলেটর',
-      text: 'দেখে আসুন নতুন সিলেটি ট্রান্সলেটর',
-      url: 'https://play.google.com/store/apps/details?id=co.median.android.jlrnql'
-    };
-
-    if (typeof window.AppInventor !== "undefined" && window.AppInventor.setWebViewString) {
-      // অ্যাপে: WebViewString-এ শুধু "share" পাঠানো হবে
-      window.AppInventor.setWebViewString("share");
+  function shareContent(event) {
+    if (event) { event.stopPropagation(); event.preventDefault(); }
+    const shareText = 'দেখে আসুন নতুন সিলেটি ট্রান্সলেটর\nhttps://sylheti.kamildex.com';
+    if (typeof Android !== "undefined") {
+      Android.share();
     } else if (navigator.share) {
-      // মোবাইল ব্রাউজারে: system share
-      navigator.share(shareData)
-        .then(() => console.log('Shared successfully'))
-        .catch((error) => {
-          console.log('Sharing failed, fallback to copy', error);
-          fallbackCopy(shareData);
-        });
+      navigator.share({ text: shareText })
+        .catch(() => copyToClipboard(shareText));
     } else {
-      // ডেস্কটপে fallback
-      fallbackCopy(shareData);
+      copyToClipboard(shareText);
     }
   }
 
-  function fallbackCopy(data) {
-    const fullText = `${data.text} ${data.url}`;
-    navigator.clipboard.writeText(fullText)
-      .then(() => {
-        showToast("লিংক কপি হয়েছে! এখন বন্ধুদের কাছে পাঠান।");
-      })
-      .catch((err) => {
-        console.error('কপি করতে সমস্যা হয়েছে:', err);
-        showToast("দুঃখিত, লিংক কপি করা হয়নি।", true);
-      });
+  function copyToClipboard(text) {
+    navigator.clipboard.writeText(text)
+      .then(() => showToast("লিংক কপি হয়েছে!"))
+      .catch(() => showToast("শেয়ার করা সম্ভব হয়নি।", true));
   }
 </script>
 </head>
@@ -138,7 +115,7 @@ document.addEventListener('DOMContentLoaded', function () {
             <a href="/" class="logo">Sylheti<span class="logo-highlight">Words</span></a>
 
             <!-- Notification -->
-            <button class="share-btn" onclick="shareContent()">
+            <button class="share-btn" onclick="shareContent(event)">
     <i class="fas fa-share-alt share-icon"></i>
     <span class="notification-badge">3</span>
 </button>
