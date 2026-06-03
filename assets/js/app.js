@@ -1,4 +1,4 @@
-// Firebase configuration (replace with your actual config)
+// Firebase configuration
 const firebaseConfig = {
     apiKey: "AIzaSyBaTKFY31DzZJj--qKHHnpQ_K5m5kxka-s",
     authDomain: "sylhetitranslator.firebaseapp.com",
@@ -9,7 +9,6 @@ const firebaseConfig = {
     databaseURL: "https://sylhetitranslator-default-rtdb.asia-southeast1.firebasedatabase.app/"
 };
 
-// Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 const database = firebase.database();
 
@@ -43,12 +42,15 @@ let currentDirection = 'sylhetiToBangla';
 let lastTranslationId = null;
 let lastInputText = '';
 
-// Initialize the app
+function convertToBanglaNumber(number) {
+    const engToBan = { '0': '০', '1': '১', '2': '২', '3': '৩', '4': '৪', '5': '৫', '6': '৬', '7': '৭', '8': '৮', '9': '৯' };
+    return number.toString().split('').map(d => engToBan[d] || d).join('');
+}
+
 function initApp() {
     try {
         setupEventListeners();
         updateUI();
-        // Check if Firebase is initialized properly
         if (!firebase.apps.length) {
             throw new Error('Firebase initialization failed');
         }
@@ -58,38 +60,27 @@ function initApp() {
     }
 }
 
-// Set up all event listeners
 function setupEventListeners() {
     try {
-        // Tab switching
         sylhetiToBanglaTab.addEventListener('click', () => switchDirection('sylhetiToBangla'));
         banglaToSylhetiTab.addEventListener('click', () => switchDirection('banglaToSylheti'));
-        
-        // Translation
+
         translateBtn.addEventListener('click', translateText);
         inputText.addEventListener('keydown', (e) => {
-            if (e.ctrlKey && e.key === 'Enter') {
-                translateText();
-            }
+            if (e.ctrlKey && e.key === 'Enter') translateText();
         });
-        
-        // Input/Output actions
+
         clearInputBtn.addEventListener('click', clearInput);
         copyOutputBtn.addEventListener('click', copyOutput);
-        
-        // Feedback system
+
         feedbackYesBtn.addEventListener('click', () => handleFeedback(true));
         feedbackNoBtn.addEventListener('click', () => handleFeedback(false));
         cancelCorrectionBtn.addEventListener('click', cancelCorrection);
         submitCorrectionBtn.addEventListener('click', submitCorrection);
-        
-        // Add new translation
+
         addNewBtn.addEventListener('click', addNewTranslation);
-        
-        // Character count
         inputText.addEventListener('input', updateCharacterCount);
-        
-        // Modal controls
+
         closeModalBtn.addEventListener('click', closeModal);
         modalOkBtn.addEventListener('click', closeModal);
     } catch (error) {
@@ -98,12 +89,10 @@ function setupEventListeners() {
     }
 }
 
-// Updated switchDirection function
 function switchDirection(direction) {
     try {
         currentDirection = direction;
-        
-        // Update tab UI
+
         if (direction === 'sylhetiToBangla') {
             sylhetiToBanglaTab.classList.add('active');
             sylhetiToBanglaTab.setAttribute('aria-selected', 'true');
@@ -119,14 +108,12 @@ function switchDirection(direction) {
             inputLabel.textContent = 'বাংলা লিখুন';
             outputLabel.textContent = 'সিলেটি অনুবাদ';
         }
-        
-        // Only clear if the current output is "No translation found" message
+
         if (outputText.querySelector('.no-translation')) {
             outputText.innerHTML = '<p class="placeholder-text">অনুবাদ এখানে প্রদর্শিত হবে</p>';
             lastTranslationId = null;
         }
-        
-        // Swap input and output if there's existing translated text
+
         if (outputText.textContent.trim() && !outputText.querySelector('.placeholder-text') && !outputText.querySelector('.no-translation')) {
             const temp = inputText.value;
             inputText.value = outputText.textContent;
@@ -134,7 +121,7 @@ function switchDirection(direction) {
         } else if (lastInputText) {
             inputText.value = lastInputText;
         }
-        
+
         updateCharacterCount();
     } catch (error) {
         showErrorModal('দিক পরিবর্তন করতে সমস্যা হয়েছে।');
@@ -142,23 +129,16 @@ function switchDirection(direction) {
     }
 }
 
-// Update character count
 function updateCharacterCount() {
     try {
         const count = inputText.value.length;
         charCount.textContent = count;
-        
-        if (count > 30) {
-            charCount.style.color = 'var(--error-color)';
-        } else {
-            charCount.style.color = 'var(--medium-color)';
-        }
+        charCount.style.color = count > 30 ? 'var(--error-color)' : 'var(--medium-color)';
     } catch (error) {
         console.error('Character count update error:', error);
     }
 }
 
-// Clear input field
 function clearInput() {
     try {
         inputText.value = '';
@@ -172,14 +152,13 @@ function clearInput() {
     }
 }
 
-// Copy output to clipboard
 function copyOutput() {
     try {
         if (outputText.querySelector('.placeholder-text')) {
             showNotification('কপি করার জন্য কোনো অনুবাদ নেই', 'error');
             return;
         }
-        
+
         const textToCopy = outputText.textContent;
         navigator.clipboard.writeText(textToCopy).then(() => {
             showNotification('অনুবাদ কপি করা হয়েছে!');
@@ -193,8 +172,6 @@ function copyOutput() {
     }
 }
 
-
-// Translate text
 function translateText() {
     try {
         const text = inputText.value.trim();
@@ -210,120 +187,92 @@ function translateText() {
             return;
         }
 
-        
-    // Show loading state
-outputText.innerHTML = '<p class="placeholder-text"><i class="fas fa-spinner fa-spin"></i> অনুবাদ করা হচ্ছে...</p>';
-translateBtn.disabled = true;
+        outputText.innerHTML = '<p class="placeholder-text"><i class="fas fa-spinner fa-spin"></i> অনুবাদ করা হচ্ছে...</p>';
+        translateBtn.disabled = true;
 
-// Check if the input contains only English characters
-const isEnglishText = /^[a-zA-Z\s]*$/.test(text);
+        if (/^[a-zA-Z\s]*$/.test(text)) {
+            outputText.innerHTML = '<p class="no-translation"><i class="fas fa-exclamation-circle"></i> দুঃখিত, ইংরেজি শব্দ অনুবাদ হবে না</p>';
+            translateBtn.disabled = false;
+            return;
+        }
 
-if (isEnglishText) {
-    outputText.innerHTML = `
-        <p class="no-translation">
-            <i class="fas fa-exclamation-circle"></i> দুঃখিত, ইংরেজি শব্দ অনুবাদ হবে না
-        </p>`;
-    translateBtn.disabled = false;
-    return;
-}
+        const translationsRef = database.ref('translations');
 
-const translationsRef = database.ref('translations');
+        translationsRef.once('value').then((snapshot) => {
+            const translations = snapshot.val();
+            const wordTranslations = new Map();
+            const usedTranslationIds = new Set();
 
-translationsRef.once('value').then((snapshot) => {
-    const translations = snapshot.val();
-    const wordTranslations = new Map();
-    let usedTranslationIds = new Set();
+            Object.entries(translations).forEach(([id, trans]) => {
+                const sourceField = currentDirection === 'sylhetiToBangla' ? 'sylheti' : 'bangla';
+                const targetField = currentDirection === 'sylhetiToBangla' ? 'bangla' : 'sylheti';
 
-    // ১. বাংলা কার/মাত্রা সাপোর্ট সহ ডাটাবেজ প্রসেসিং
-    Object.entries(translations).forEach(([id, trans]) => {
-        const sourceField = currentDirection === 'sylhetiToBangla' ? 'sylheti' : 'bangla';
-        const targetField = currentDirection === 'sylhetiToBangla' ? 'bangla' : 'sylheti';
+                const sourceWords = trans[sourceField]
+                    .split(/\s+/)
+                    .map(word => word.trim().normalize('NFC').replace(/[^\p{L}\p{M}\p{N}]/gu, ''));
 
-        const sourceWords = trans[sourceField]
-            .split(/\s+/)
-            .map(word => word
-                .trim()
-                .normalize('NFC') // বাংলা ইউনিকোড স্ট্যান্ডার্ডাইজেশন
-                .replace(/[^\p{L}\p{M}\p{N}]/gu, '') // কার/মাত্রা রাখা হয়েছে (\p{M})
-            );
+                const targetWords = trans[targetField].split(/\s+/);
 
-        const targetWords = trans[targetField].split(/\s+/);
+                sourceWords.forEach((cleanSourceWord, index) => {
+                    if (targetWords[index]) {
+                        const existing = wordTranslations.get(cleanSourceWord);
+                        const currentVotes = trans.votes || 0;
 
-        sourceWords.forEach((cleanSourceWord, index) => {
-            if(targetWords[index]) {
-                const existing = wordTranslations.get(cleanSourceWord);
-                const currentVotes = trans.votes || 0;
+                        if (!existing || currentVotes > existing.votes) {
+                            wordTranslations.set(cleanSourceWord, {
+                                translation: targetWords[index],
+                                id: id,
+                                votes: currentVotes
+                            });
+                        }
+                    }
+                });
+            });
 
-                if (!existing || currentVotes > existing.votes) {
-                    wordTranslations.set(cleanSourceWord, {
-                        translation: targetWords[index],
-                        id: id,
-                        votes: currentVotes
-                    });
-                }
-            }
-        });
-    });
+            const lines = text.split('\n');
+            const outputLines = [];
 
-    // ২. ইউজার ইনপুট প্রসেসিং (বাংলা কার সম্পূর্ণ সাপোর্ট)
-    const lines = text.split('\n');
-    let outputLines = [];
+            lines.forEach(line => {
+                const words = line.split(/(\s+)/);
+                const translatedLine = [];
 
-    lines.forEach(line => {
-        const words = line.split(/(\s+)/);
-        let translatedLine = [];
+                words.forEach(word => {
+                    const cleanWord = word.trim().normalize('NFC').replace(/[^\p{L}\p{M}\p{N}]/gu, '');
 
-        words.forEach(word => {
-            const cleanWord = word
-                .trim()
-                .normalize('NFC') // একই নর্মালাইজেশন
-                .replace(/[^\p{L}\p{M}\p{N}]/gu, ''); // মাত্রা/কার অক্ষত
+                    if (wordTranslations.has(cleanWord)) {
+                        const { translation, id } = wordTranslations.get(cleanWord);
+                        translatedLine.push(translation);
+                        usedTranslationIds.add(id);
+                    } else {
+                        translatedLine.push(word);
+                    }
+                });
 
-            let translatedWord = word;
+                outputLines.push(translatedLine.join(''));
+            });
 
-            if (wordTranslations.has(cleanWord)) {
-                const { translation, id } = wordTranslations.get(cleanWord);
-                translatedWord = translation;
-                usedTranslationIds.add(id);
+            const finalTranslation = outputLines.join('<br>');
+            lastTranslationId = usedTranslationIds.size > 0 ? Array.from(usedTranslationIds)[0] : null;
+
+            if (usedTranslationIds.size > 0) {
+                outputText.innerHTML = `<p>${finalTranslation}</p>`;
+                showNotification('অনুবাদ সম্পন্ন হয়েছে!');
+            } else {
+                outputText.innerHTML = '<p class="no-translation"><i class="fas fa-exclamation-circle"></i> অনুবাদ পাওয়া যায়নি<br><br>আপনি নিচের ফর্ম ব্যবহার করে নতুন অনুবাদ যোগ করতে পারেন</p>';
             }
 
-            translatedLine.push(translatedWord);
+            translateBtn.disabled = false;
+        }).catch((error) => {
+            outputText.innerHTML = `<p class="no-translation"><i class="fas fa-exclamation-triangle"></i> ত্রুটি: ${error.message}</p>`;
+            console.error('Translation error:', error);
+            translateBtn.disabled = false;
         });
-
-        outputLines.push(translatedLine.join(''));
-    });
-
-    // ৩. ফলাফল ডিসপ্লে
-    const finalTranslation = outputLines.join('<br>');
-    lastTranslationId = usedTranslationIds.size > 0 ? Array.from(usedTranslationIds)[0] : null;
-
-    if (usedTranslationIds.size > 0) {
-        outputText.innerHTML = `<p>${finalTranslation}</p>`;
-        showNotification('অনুবাদ সম্পন্ন হয়েছে!');
-    } else {
-        outputText.innerHTML = `
-            <p class="no-translation">
-                <i class="fas fa-exclamation-circle"></i> অনুবাদ পাওয়া যায়নি<br><br>
-                আপনি নিচের ফর্ম ব্যবহার করে নতুন অনুবাদ যোগ করতে পারেন
-            </p>`;
-    }
-
-    translateBtn.disabled = false;
-}).catch((error) => {
-    outputText.innerHTML = `
-        <p class="no-translation">
-            <i class="fas fa-exclamation-triangle"></i> ত্রুটি: ${error.message}
-        </p>`;
-    console.error("Translation error:", error);
-    translateBtn.disabled = false;
-});
 
     } catch (error) {
-        // Error handling remains same
+        console.error('Translate error:', error);
     }
 }
 
-    // Handle user feedback
 function handleFeedback(isCorrect) {
     try {
         if (!lastTranslationId) {
@@ -332,25 +281,23 @@ function handleFeedback(isCorrect) {
         }
 
         const translationRef = database.ref(`translations/${lastTranslationId}`);
-        
-        // For both correct and incorrect, we'll just update votes
+
         translationRef.transaction((translation) => {
             if (translation) {
                 if (isCorrect) {
                     translation.votes = (translation.votes || 0) + 1;
                 } else {
                     translation.votes = (translation.votes || 0) - 1;
-                    // Ensure votes don't go negative
                     if (translation.votes < 0) translation.votes = 0;
                 }
             }
             return translation;
         }).then(() => {
-            // Show appropriate notification based on the feedback
             if (isCorrect) {
                 showNotification('ধন্যবাদ আপনার সঠিক ফিডব্যাকের জন্য!');
             } else {
-                showNotification('শুধুমাত্র ভুল শব্দটি নিচের বক্সে জমা দিন', 'error');
+                correctionBox.classList.add('show');
+                showNotification('সঠিক অনুবাদ নিচের বক্সে লিখুন', 'error');
             }
         }).catch(error => {
             showErrorModal('ফিডব্যাক সংরক্ষণ করতে সমস্যা হয়েছে।');
@@ -363,7 +310,47 @@ function handleFeedback(isCorrect) {
     }
 }
 
-// Add new translation
+function cancelCorrection() {
+    try {
+        correctionBox.classList.remove('show');
+        correctionBox.querySelector('textarea').value = '';
+    } catch (error) {
+        console.error('Cancel correction error:', error);
+    }
+}
+
+function submitCorrection() {
+    try {
+        const correctionTextarea = correctionBox.querySelector('textarea');
+        const correctionText = correctionTextarea ? correctionTextarea.value.trim() : '';
+
+        if (!correctionText) {
+            showNotification('সঠিক অনুবাদ লিখুন', 'error');
+            return;
+        }
+
+        if (!lastTranslationId) {
+            showNotification('অনুবাদ খুঁজে পাওয়া যায়নি', 'error');
+            return;
+        }
+
+        const translationRef = database.ref(`translations/${lastTranslationId}`);
+        const correctionField = currentDirection === 'sylhetiToBangla' ? 'bangla' : 'sylheti';
+
+        translationRef.update({ [correctionField]: correctionText }).then(() => {
+            showNotification('সংশোধন সফলভাবে জমা হয়েছে!');
+            correctionBox.classList.remove('show');
+            correctionTextarea.value = '';
+        }).catch(error => {
+            showErrorModal('সংশোধন জমা দিতে সমস্যা হয়েছে।');
+            console.error('Submit correction error:', error);
+        });
+    } catch (error) {
+        showErrorModal('সংশোধন প্রক্রিয়ায় সমস্যা হয়েছে।');
+        console.error('Submit correction error:', error);
+    }
+}
+
 function addNewTranslation() {
     try {
         const sylhetiText = newSylhetiInput.value.trim();
@@ -374,33 +361,23 @@ function addNewTranslation() {
             return;
         }
 
-        // Check if both inputs contain only one word
         if (sylhetiText.split(/\s+/).length > 1 || banglaText.split(/\s+/).length > 1) {
             showNotification('একবারে একটি শব্দের বেশি জমা দেয়া যাবে না', 'error');
             return;
         }
 
-        // Check for special characters (e.g., punctuation marks) in both inputs
-        const invalidChars = /[.,'।*?!]/;
-        if (invalidChars.test(sylhetiText) || invalidChars.test(banglaText)) {
+        if (/[.,'।*?!]/.test(sylhetiText) || /[.,'।*?!]/.test(banglaText)) {
             showNotification('স্পেশাল ক্যারেক্টার ব্যবহার করা যাবে না', 'error');
             return;
         }
 
-        // Check for English characters in both inputs
-        const englishRegex = /[a-zA-Z0-9]/;
-        if (englishRegex.test(sylhetiText) || englishRegex.test(banglaText)) {
+        if (/[a-zA-Z0-9]/.test(sylhetiText) || /[a-zA-Z0-9]/.test(banglaText)) {
             showNotification('ইংরেজি শব্দ জমা হবে না', 'error');
             return;
         }
 
         const sylhetiCount = sylhetiText.split(/\s+/).length;
         const banglaCount = banglaText.split(/\s+/).length;
-
-        function convertToBanglaNumber(number) {
-            const engToBan = { '0': '০', '1': '১', '2': '২', '3': '৩', '4': '৪', '5': '৫', '6': '৬', '7': '৭', '8': '৮', '9': '৯' };
-            return number.toString().split('').map(d => engToBan[d] || d).join('');
-        }
 
         if (sylhetiCount !== banglaCount) {
             showNotification(
@@ -411,68 +388,64 @@ function addNewTranslation() {
         }
 
         const translationsRef = database.ref('translations');
-        translationsRef.once('value')
-            .then(snapshot => {
-                const allData = snapshot.val();
-                let foundExactMatch = false;
-                let bestMatchedId = null;
-                let bestMatchedVote = -1;
+        translationsRef.once('value').then(snapshot => {
+            const allData = snapshot.val();
+            let foundExactMatch = false;
+            let bestMatchedId = null;
+            let bestMatchedVote = -1;
 
-                if (allData) {
-                    for (const id in allData) {
-                        const item = allData[id];
-                        if (item.sylheti === sylhetiText && item.bangla === banglaText) {
-                            // Exact match found
-                            const updatedVotes = (item.votes || 0) + 1;
-                            translationsRef.child(id).update({ votes: updatedVotes }).then(() => {
-                                showNotification(
-                                    `এই অনুবাদটি আগে থেকেই রয়েছে<br>বাংলা: ${item.bangla}<br>আপনার ভোট যোগ হয়েছে! মোট ভোট: ${convertToBanglaNumber(updatedVotes)}`,
-                                    'success'
-                                );
-                                newSylhetiInput.value = '';
-                                newBanglaInput.value = '';
-                            });
-                            foundExactMatch = true;
-                            break;
-                        }
+            if (allData) {
+                for (const id in allData) {
+                    const item = allData[id];
 
-                        // Store the entry with max votes (same Sylheti or Bangla)
-                        if ((item.sylheti === sylhetiText || item.bangla === banglaText) && item.votes > bestMatchedVote) {
-                            bestMatchedId = id;
-                            bestMatchedVote = item.votes;
-                        }
+                    if (item.sylheti === sylhetiText && item.bangla === banglaText) {
+                        const updatedVotes = (item.votes || 0) + 1;
+                        translationsRef.child(id).update({ votes: updatedVotes }).then(() => {
+                            showNotification(
+                                `এই অনুবাদটি আগে থেকেই রয়েছে<br>বাংলা: ${item.bangla}<br>আপনার ভোট যোগ হয়েছে! মোট ভোট: ${convertToBanglaNumber(updatedVotes)}`,
+                                'success'
+                            );
+                            newSylhetiInput.value = '';
+                            newBanglaInput.value = '';
+                        });
+                        foundExactMatch = true;
+                        break;
+                    }
+
+                    if ((item.sylheti === sylhetiText || item.bangla === banglaText) && item.votes > bestMatchedVote) {
+                        bestMatchedId = id;
+                        bestMatchedVote = item.votes;
                     }
                 }
+            }
 
-                if (!foundExactMatch) {
-                    // Add new translation
-                    const newRef = translationsRef.push();
-                    newRef.set({
-                        sylheti: sylhetiText,
-                        bangla: banglaText,
-                        votes: 0,
-                        userAdded: true,
-                        timestamp: firebase.database.ServerValue.TIMESTAMP
-                    }).then(() => {
-                        let message = 'নতুন অনুবাদ সফলভাবে যোগ হয়েছে!';
-                        if (bestMatchedId) {
-                            const matched = allData[bestMatchedId];
-                            message += `<br><br>তবে আগের অনুবাদ পাওয়া গেছে<br><b>${matched.sylheti}</b> ➔ <b>${matched.bangla}</b><br>মোট ভোট: ${convertToBanglaNumber(matched.votes)}`;
-                        }
+            if (!foundExactMatch) {
+                const newRef = translationsRef.push();
+                newRef.set({
+                    sylheti: sylhetiText,
+                    bangla: banglaText,
+                    votes: 0,
+                    userAdded: true,
+                    timestamp: firebase.database.ServerValue.TIMESTAMP
+                }).then(() => {
+                    let message = 'নতুন অনুবাদ সফলভাবে যোগ হয়েছে!';
+                    if (bestMatchedId) {
+                        const matched = allData[bestMatchedId];
+                        message += `<br><br>তবে আগের অনুবাদ পাওয়া গেছে<br><b>${matched.sylheti}</b> ➔ <b>${matched.bangla}</b><br>মোট ভোট: ${convertToBanglaNumber(matched.votes)}`;
+                    }
+                    showNotification(message, 'success');
+                    newSylhetiInput.value = '';
+                    newBanglaInput.value = '';
+                }).catch((error) => {
+                    showErrorModal(`ত্রুটি: ${error.message}`);
+                    console.error('Add translation error:', error);
+                });
+            }
 
-                        showNotification(message, 'success');
-                        newSylhetiInput.value = '';
-                        newBanglaInput.value = '';
-                    }).catch((error) => {
-                        showErrorModal(`ত্রুটি: ${error.message}`);
-                        console.error('Add translation error:', error);
-                    });
-                }
-
-            }).catch(error => {
-                showErrorModal('অনুবাদ যাচাই করতে সমস্যা হয়েছে।');
-                console.error('Check existing error:', error);
-            });
+        }).catch(error => {
+            showErrorModal('অনুবাদ যাচাই করতে সমস্যা হয়েছে।');
+            console.error('Check existing error:', error);
+        });
 
     } catch (error) {
         showErrorModal('নতুন অনুবাদ যোগ করতে সমস্যা হয়েছে।');
@@ -480,16 +453,12 @@ function addNewTranslation() {
     }
 }
 
-
-// Show notification
 function showNotification(message, type = 'success') {
     try {
-        const notification = document.getElementById('notification'); // ID দিয়ে ধরলাম
-
-        notification.innerHTML = message; // HTML সাপোর্টের জন্য
+        const notification = document.getElementById('notification');
+        notification.innerHTML = message;
         notification.classList.add('show');
-        
-        // Set color based on type
+
         if (type === 'error') {
             notification.style.backgroundColor = 'var(--error-color)';
         } else if (type === 'warning') {
@@ -498,7 +467,6 @@ function showNotification(message, type = 'success') {
             notification.style.backgroundColor = 'var(--primary-color)';
         }
 
-        // Hide after 5 seconds or on touch/click
         const hideNotification = () => {
             notification.classList.remove('show');
             notification.removeEventListener('click', hideNotification);
@@ -506,13 +474,11 @@ function showNotification(message, type = 'success') {
 
         setTimeout(hideNotification, 5000);
         notification.addEventListener('click', hideNotification);
-
     } catch (error) {
         console.error('Notification error:', error);
     }
 }
 
-// Show error modal
 function showErrorModal(message) {
     try {
         modalMessage.textContent = message;
@@ -522,7 +488,6 @@ function showErrorModal(message) {
     }
 }
 
-// Close modal
 function closeModal() {
     try {
         errorModal.classList.remove('show');
@@ -531,7 +496,6 @@ function closeModal() {
     }
 }
 
-// Update UI based on state
 function updateUI() {
     try {
         updateCharacterCount();
@@ -540,5 +504,4 @@ function updateUI() {
     }
 }
 
-// Initialize the app when DOM is loaded
 document.addEventListener('DOMContentLoaded', initApp);
