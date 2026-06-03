@@ -133,7 +133,8 @@ document.addEventListener('DOMContentLoaded', function () {
     }, 3000);
   }
 
-  function shareContent() {
+  function shareContent(event) {
+    if (event) { event.stopPropagation(); event.preventDefault(); }
     const shareData = {
       title: 'সিলেটি থেকে বাংলা ট্রান্সলেটর',
       text: 'দেখে আসুন নতুন সিলেটি ট্রান্সলেটর',
@@ -185,7 +186,7 @@ document.addEventListener('DOMContentLoaded', function () {
             <a href="/" class="logo">Sylheti<span class="logo-highlight">Words</span></a>
 
             <!-- Notification -->
-            <button class="share-btn" onclick="shareContent()">
+            <button class="share-btn" onclick="shareContent(event)">
     <i class="fas fa-share-alt share-icon"></i>
     <span class="notification-badge">3</span>
 </button>
