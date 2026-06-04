@@ -1,16 +1,10 @@
-[
-  {
-    "relation": [
-      "delegate_permission/common.handle_all_urls",
-      "delegate_permission/common.get_login_creds"
-    ],
-    "target": {
-      "namespace": "android_app",
-      "package_name": "co.median.android.jlrnql",
-      "sha256_cert_fingerprints": [
-        "88:F1:3B:28:47:F2:20:41:ED:1B:17:48:58:B9:6F:74:50:BE:F1:6E:69:F7:C3:4E:85:7A:02:0E:40:93:27:2C",
-        "00:D8:A9:3A:BF:D5:E6:AE:36:4B:B0:EF:ED:B1:14:97:76:8A:AF:13:91:82:0C:0C:FA:93:CD:B4:13:32:5C:D6"
-      ]
-    }
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "co.median.android.jlrnql",
+    "sha256_cert_fingerprints": [
+      "79:C2:43:3D:6E:9A:D3:45:AA:77:ED:82:03:23:57:DA:39:04:75:A7:D3:EB:2C:81:CE:6F:71:12:5C:47:99:D5"
+    ]
   }
-]
+}]
